@@ -1,0 +1,82 @@
+{
+  "purpose": "experimental_demo_not_clinical_diagnosis",
+  "dog": {
+    "checkpoint": "models/dog_experimental_resnet18/best.pt",
+    "input": "dog_skin_photo",
+    "labels_vi": {
+      "Dermatitis": "Viêm da (nhóm nhãn rộng)",
+      "Fungal_infections": "Nhiễm nấm (nhãn dataset)",
+      "Healthy": "Đối chứng bình thường theo dataset",
+      "Hypersensitivity": "Quá mẫn/dị ứng (nhãn dataset)",
+      "demodicosis": "Ghẻ Demodex",
+      "ringworm": "Nấm da dermatophyte (ringworm)"
+    },
+    "web_checkpoint": "models/dog_web_experimental_resnet18/best.pt",
+    "web_labels_vi": {
+      "Dermatitis": "Viêm da (nhóm nhãn rộng)",
+      "Fungal_infections": "Nhiễm nấm (nhãn dataset)",
+      "Healthy": "Đối chứng bình thường theo dataset",
+      "Hypersensitivity": "Quá mẫn/dị ứng (nhãn dataset)",
+      "demodicosis": "Ghẻ Demodex",
+      "ringworm": "Nấm da dermatophyte (ringworm)",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được",
+      "oral_signs_unverified": "Dấu hiệu miệng/nước dãi cần đánh giá"
+    }
+  },
+  "cattle": {
+    "checkpoint": "models/cattle_experimental_resnet18/best.pt",
+    "input": "cattle_photo_of_affected_area",
+    "labels_vi": {
+      "foot_and_mouth": "Lở mồm long móng",
+      "healthy": "Đối chứng bình thường theo dataset",
+      "lumpy_skin": "Viêm da nổi cục",
+      "mastitis": "Viêm vú"
+    },
+    "web_checkpoint": "models/cattle_web_experimental_resnet18/best.pt",
+    "web_labels_vi": {
+      "foot_and_mouth": "Lở mồm long móng",
+      "healthy": "Đối chứng bình thường theo dataset",
+      "lumpy_skin": "Viêm da nổi cục",
+      "mastitis": "Viêm vú",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    }
+  },
+  "chicken": {
+    "checkpoint": "models/chicken_experimental_resnet18/best.pt",
+    "input": "chicken_fecal_photo",
+    "labels_vi": {
+      "Coccidiosis": "Cầu trùng",
+      "Healthy": "Đối chứng bình thường theo dataset",
+      "New Castle Disease": "Newcastle",
+      "Salmonella": "Salmonella (chưa xác định serovar)"
+    },
+    "web_checkpoint": "models/chicken_web_experimental_resnet18/best.pt",
+    "web_labels_vi": {
+      "Coccidiosis": "Cầu trùng",
+      "Healthy": "Đối chứng bình thường theo dataset",
+      "New Castle Disease": "Newcastle",
+      "Salmonella": "Salmonella (chưa xác định serovar)",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    }
+  },
+  "pig": {
+    "checkpoint": "models/pig_experimental_resnet18/best.pt",
+    "status": "experimental_small_dataset",
+    "input": "pig_skin_photo_of_affected_area",
+    "labels_vi": {
+      "Erysipelas": "Bệnh đóng dấu lợn",
+      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
+      "Sarcoptic_Mange": "Ghẻ Sarcoptes"
+    },
+    "has_healthy_class": false,
+    "limitations": "66 images after cleaning; only 12 test images; inherited labels; no external Vietnamese validation or unrelated-image rejection",
+    "web_checkpoint": "models/pig_repair_v4_efficientnet_b0/best.pt",
+    "web_labels_vi": {
+      "Erysipelas": "Bệnh đóng dấu lợn",
+      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
+      "Sarcoptic_Mange": "Ghẻ Sarcoptes",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "repair_audit": "reports/final_repair_audit.json"
+  }
+}

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: vetlens
+    runtime: python
+    plan: standard
+    buildCommand: pip install -r requirements-render.txt && python scripts/check_render_models.py
+    startCommand: uvicorn web.app:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: VETLENS_STATE_DIR
+        value: /var/data/vetlens
+    disk:
+      name: vetlens-history
+      mountPath: /var/data
+      sizeGB: 1
