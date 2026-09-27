@@ -11,12 +11,27 @@ async function history(){const rows=await api('/api/chats');const nav=$('#histor
 function outlineIcon(emergency=false){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('class','section-icon');svg.setAttribute('aria-hidden','true');const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',emergency?'M12 3 2 21h20L12 3ZM12 9v5m0 3v1':'M8 3h8v3H8zM8 5H5v16h14V5h-3M8 11h8M8 15h8');svg.append(path);return svg;}
 function resultCard(r){
  if(r.kind==='rabies_screening')return rabiesCard(r);
- const card=node('div','result'+(r.label==='unknown'?' unknown':'')),head=node('div','result-summary');
- head.append(node('div','kicker','KẾT QUẢ THAM KHẢO'),node('h3','',r.label==='unknown'?'Chưa nhận diện được':r.name),node('p','',r.label==='unknown'?'Ảnh chưa được nhận diện trong các lớp hỗ trợ; không có nghĩa là khỏe mạnh.':'Đây là nhãn gợi ý từ ảnh, chưa xác nhận bệnh.'));
- for(const [rank,s] of r.scores.slice(0,r.label==='unknown'?1:3).entries()){const row=node('div','score');row.dataset.rank=rank;row.append(node('span','',s.name),node('span','score-label','Điểm phân loại: '+(s.score*100).toFixed(1)+'%'));const track=node('div','track'),bar=node('i');bar.style.width=(s.score*100)+'%';track.append(bar);row.append(track);head.append(row);}
- head.append(node('small','','Điểm phân loại tương đối của mô hình, không phải xác suất mắc bệnh đã hiệu chỉnh. Mô tả bạn nhập được lưu để tham khảo; model chỉ phân tích ảnh.'));card.append(head);
- const info=node('div','info-grid');
- for(const [key,title] of [['signs','Dấu hiệu tham khảo'],['care','Xử trí ban đầu'],['urgent','Khi cần thú y ngay'],['causes','Nguyên nhân'],['treatment','Hướng điều trị'],['medications','Thuốc tham khảo — cần thú y xác nhận'],['prevention','Cách phòng tránh'],['monitoring','Theo dõi và kiểm tra']]){if(!r.info[key])continue;const section=node('section','care-section'+(key==='urgent'?' emergency':''));section.dataset.key=key;const titleNode=node('h4','');titleNode.append(outlineIcon(key==='urgent'),document.createTextNode(title));section.append(titleNode,node('p','text',r.info[key]));info.append(section);}card.append(info);return card;
+ const unknown=r.label==='unknown',healthy=['healthy','Healthy'].includes(r.label);
+ const card=node('div','result reference-result'+(unknown?' unknown':healthy?' control-result':''));
+ const head=node('div','result-summary compact-summary');
+ const badge=node('span','result-alert-icon',unknown?'?':healthy?'i':'!');badge.setAttribute('aria-hidden','true');
+ head.append(badge,node('h3','',unknown?'Chưa nhận diện được':healthy?r.name:'Nghi ngờ: '+r.name));
+ if(r.scores.length)head.append(node('span','score-badge','Điểm: '+(r.scores[0].score*100).toFixed(1)+'%'));
+ card.append(head);
+ const meta=node('div','result-meta');
+ const speciesName={dog:'Chó',cattle:'Bò',pig:'Lợn',chicken:'Gà'}[r.species]||'Chưa chọn';
+ for(const [title,value] of [['Loài vật nuôi',speciesName],['Loại đầu vào',r.species==='chicken'?'Ảnh phân':'Ảnh quan sát'],['Đánh giá chuyên môn','Cần thú y xác minh']]){const tile=node('div','meta-tile');tile.append(node('span','',title),node('strong','',value));meta.append(tile);}card.append(meta);
+ const makeGroup=(title,cls)=>{const group=node('details','advice-group '+cls);group.open=true;const summary=node('summary','');summary.append(outlineIcon(),document.createTextNode(title));group.append(summary);card.append(group);return group;};
+ const add=(parent,key,title,list=false)=>{if(!r.info[key])return;const section=node('section','care-section'+(key==='urgent'?' emergency':''));section.dataset.key=key;section.append(node('h4','',title));if(list){const ol=node('ol','advice-steps');const sentences=r.info[key].match(/[^.!?]+(?:[.!?]+|$)/g)||[r.info[key]];for(const sentence of sentences)if(sentence.trim())ol.append(node('li','',sentence.trim()));section.append(ol);}else section.append(node('p','text',r.info[key]));parent.append(section);};
+ const detail=makeGroup('Thông tin chi tiết','details-group');add(detail,'signs','Dấu hiệu tham khảo');add(detail,'causes','Nguyên nhân');
+ const care=makeGroup('Khuyến nghị chăm sóc & điều trị','treatment-group');add(care,'care','Xử trí ban đầu',true);add(care,'treatment','Hướng điều trị',true);add(care,'medications','Thuốc tham khảo — cần thú y xác nhận');
+ const urgent=makeGroup('Khi cần thú y ngay','urgent-group');add(urgent,'urgent','Dấu hiệu cần chú ý');
+ const prevention=makeGroup('Phòng tránh & theo dõi','prevention-group');add(prevention,'prevention','Cách phòng tránh',true);add(prevention,'monitoring','Theo dõi và kiểm tra',true);
+ const scores=node('details','score-disclosure');scores.append(node('summary','','Xem điểm phân loại'));
+ for(const [rank,s] of r.scores.slice(0,unknown?1:3).entries()){const row=node('div','score');row.dataset.rank=rank;row.append(node('span','',s.name),node('span','score-label','Điểm phân loại: '+(s.score*100).toFixed(1)+'%'));const track=node('div','track'),bar=node('i');bar.style.width=(s.score*100)+'%';track.append(bar);row.append(track);scores.append(row);}
+ scores.append(node('small','','Điểm phân loại tương đối của mô hình, không phải xác suất mắc bệnh đã hiệu chỉnh. Mô tả bạn nhập được lưu để tham khảo; model chỉ phân tích ảnh.'));card.append(scores);
+ if(unknown)card.append(node('p','unknown-note','Chưa nhận diện được không có nghĩa là khỏe mạnh.'));
+ return card;
 }
 async function render(){const rows=chat?await api('/api/chats/'+chat):[];const last=rows.filter(m=>m.result).at(-1);if(last){species=last.result.species;document.querySelectorAll('[data-species]').forEach(b=>b.classList.toggle('selected',b.dataset.species===species));hint();}$('#welcome').hidden=rows.length>0;const list=$('#messages');list.replaceChildren();list.classList.remove('stale');for(const m of rows){const el=node('article','message '+m.role);if(m.role==='assistant')el.append(node('div','assistant-label','✦ VETLENS'));if(m.image){const img=node('img');img.src=m.image;img.alt='Ảnh đã gửi';el.append(img);}el.append(m.result?resultCard(m.result):node('div','text',m.content));list.append(el);}if(rows.length)list.lastElementChild?.scrollIntoView({behavior:'smooth',block:'start'});}
 function clearFile(){if(previewURL)URL.revokeObjectURL(previewURL);previewURL=null;$('#file').value='';$('#attachment').hidden=true;$('#preview').removeAttribute('src');}
