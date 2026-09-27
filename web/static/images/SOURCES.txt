@@ -4,3 +4,4 @@ Dog: https://images.unsplash.com/photo-1552053831-71594a27632d
 Cattle: https://images.unsplash.com/photo-1546445317-29f4545e9d53
 Chicken: https://images.unsplash.com/photo-1548550023-2bdb3c5beed7
 Unsplash license: https://unsplash.com/license
+Cow banner: https://images.unsplash.com/photo-1527153857715-3908f2bae5e8
