@@ -1,0 +1,1575 @@
+{
+  "summary": {
+    "species": "cattle",
+    "classes": [
+      "foot_and_mouth",
+      "healthy",
+      "lumpy_skin",
+      "mastitis",
+      "unknown"
+    ],
+    "before": {
+      "foot_and_mouth": 642,
+      "healthy": 1311,
+      "lumpy_skin": 1296,
+      "mastitis": 158,
+      "unknown": 374
+    },
+    "added": {
+      "mastitis": 22,
+      "foot_and_mouth": 17,
+      "lumpy_skin": 24
+    },
+    "after": {
+      "foot_and_mouth": 659,
+      "healthy": 1311,
+      "lumpy_skin": 1320,
+      "mastitis": 180,
+      "unknown": 374
+    },
+    "excluded_existing_matches": 7,
+    "added_splits": {
+      "train": {
+        "mastitis": 14,
+        "foot_and_mouth": 11,
+        "lumpy_skin": 16
+      },
+      "val": {
+        "mastitis": 4,
+        "foot_and_mouth": 3,
+        "lumpy_skin": 4
+      },
+      "test": {
+        "mastitis": 4,
+        "foot_and_mouth": 3,
+        "lumpy_skin": 4
+      }
+    },
+    "training_manifest": "data/processed/cattle_user_update_v1/manifest.json",
+    "manifest_sha256": "991059678a22bc74e656bf2eee058b80e7f8bc35184a84a865aee922a574b067"
+  },
+  "seed": 17,
+  "baseline_validation": {
+    "existing": {
+      "accuracy": 0.9241622574955908,
+      "macro_f1": 0.9428046229963634,
+      "confusion_matrix_true_rows": [
+        [
+          92,
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          169,
+          24,
+          0,
+          2
+        ],
+        [
+          2,
+          5,
+          187,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          23,
+          0
+        ],
+        [
+          1,
+          4,
+          0,
+          0,
+          53
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.9583333333333334,
+          "recall": 0.9583333333333334,
+          "f1": 0.9583333333333334,
+          "support": 96
+        },
+        "healthy": {
+          "precision": 0.9285714285714286,
+          "recall": 0.8622448979591837,
+          "f1": 0.8941798941798942,
+          "support": 196
+        },
+        "lumpy_skin": {
+          "precision": 0.8862559241706162,
+          "recall": 0.9639175257731959,
+          "f1": 0.9234567901234567,
+          "support": 194
+        },
+        "mastitis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 23
+        },
+        "unknown": {
+          "precision": 0.9636363636363636,
+          "recall": 0.9137931034482759,
+          "f1": 0.9380530973451328,
+          "support": 58
+        }
+      }
+    },
+    "user_added": {
+      "accuracy": 0.5454545454545454,
+      "macro_f1": 0.2787878787878788,
+      "confusion_matrix_true_rows": [
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666,
+          "support": 3
+        },
+        "healthy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "lumpy_skin": {
+          "precision": 0.5714285714285714,
+          "recall": 1.0,
+          "f1": 0.7272727272727273,
+          "support": 4
+        },
+        "mastitis": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "unknown": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      }
+    }
+  },
+  "updated_validation": {
+    "existing": {
+      "accuracy": 0.9223985890652557,
+      "macro_f1": 0.9392939710338174,
+      "confusion_matrix_true_rows": [
+        [
+          91,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          176,
+          19,
+          0,
+          0
+        ],
+        [
+          2,
+          11,
+          181,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          23,
+          0
+        ],
+        [
+          0,
+          4,
+          2,
+          0,
+          52
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.9680851063829787,
+          "recall": 0.9479166666666666,
+          "f1": 0.9578947368421052,
+          "support": 96
+        },
+        "healthy": {
+          "precision": 0.9025641025641026,
+          "recall": 0.8979591836734694,
+          "f1": 0.9002557544757034,
+          "support": 196
+        },
+        "lumpy_skin": {
+          "precision": 0.8960396039603961,
+          "recall": 0.9329896907216495,
+          "f1": 0.914141414141414,
+          "support": 194
+        },
+        "mastitis": {
+          "precision": 0.9583333333333334,
+          "recall": 1.0,
+          "f1": 0.9787234042553191,
+          "support": 23
+        },
+        "unknown": {
+          "precision": 1.0,
+          "recall": 0.896551724137931,
+          "f1": 0.9454545454545454,
+          "support": 58
+        }
+      }
+    },
+    "user_added": {
+      "accuracy": 0.9090909090909091,
+      "macro_f1": 0.5599999999999999,
+      "confusion_matrix_true_rows": [
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1": 0.8,
+          "support": 3
+        },
+        "healthy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "lumpy_skin": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "mastitis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "unknown": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      }
+    }
+  },
+  "baseline_test": {
+    "existing": {
+      "accuracy": 0.9092495636998255,
+      "macro_f1": 0.9016855317242634,
+      "confusion_matrix_true_rows": [
+        [
+          91,
+          2,
+          1,
+          3,
+          0
+        ],
+        [
+          4,
+          171,
+          20,
+          1,
+          2
+        ],
+        [
+          3,
+          7,
+          185,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          22,
+          1
+        ],
+        [
+          1,
+          3,
+          1,
+          1,
+          52
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.9191919191919192,
+          "recall": 0.9381443298969072,
+          "f1": 0.9285714285714285,
+          "support": 97
+        },
+        "healthy": {
+          "precision": 0.9243243243243243,
+          "recall": 0.8636363636363636,
+          "f1": 0.8929503916449086,
+          "support": 198
+        },
+        "lumpy_skin": {
+          "precision": 0.893719806763285,
+          "recall": 0.9487179487179487,
+          "f1": 0.9203980099502488,
+          "support": 195
+        },
+        "mastitis": {
+          "precision": 0.8148148148148148,
+          "recall": 0.88,
+          "f1": 0.8461538461538461,
+          "support": 25
+        },
+        "unknown": {
+          "precision": 0.9454545454545454,
+          "recall": 0.896551724137931,
+          "f1": 0.920353982300885,
+          "support": 58
+        }
+      }
+    },
+    "user_added": {
+      "accuracy": 0.5454545454545454,
+      "macro_f1": 0.2914285714285714,
+      "confusion_matrix_true_rows": [
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571,
+          "support": 3
+        },
+        "healthy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "lumpy_skin": {
+          "precision": 0.5,
+          "recall": 0.75,
+          "f1": 0.6,
+          "support": 4
+        },
+        "mastitis": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "unknown": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      }
+    }
+  },
+  "updated_test": {
+    "existing": {
+      "accuracy": 0.9109947643979057,
+      "macro_f1": 0.894127616550336,
+      "confusion_matrix_true_rows": [
+        [
+          85,
+          4,
+          1,
+          7,
+          0
+        ],
+        [
+          3,
+          179,
+          12,
+          2,
+          2
+        ],
+        [
+          4,
+          11,
+          179,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          24,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          2,
+          55
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.9239130434782609,
+          "recall": 0.8762886597938144,
+          "f1": 0.8994708994708995,
+          "support": 97
+        },
+        "healthy": {
+          "precision": 0.9179487179487179,
+          "recall": 0.9040404040404041,
+          "f1": 0.910941475826972,
+          "support": 198
+        },
+        "lumpy_skin": {
+          "precision": 0.9322916666666666,
+          "recall": 0.9179487179487179,
+          "f1": 0.9250645994832041,
+          "support": 195
+        },
+        "mastitis": {
+          "precision": 0.6666666666666666,
+          "recall": 0.96,
+          "f1": 0.7868852459016393,
+          "support": 25
+        },
+        "unknown": {
+          "precision": 0.9482758620689655,
+          "recall": 0.9482758620689655,
+          "f1": 0.9482758620689655,
+          "support": 58
+        }
+      }
+    },
+    "user_added": {
+      "accuracy": 0.7272727272727273,
+      "macro_f1": 0.45476190476190476,
+      "confusion_matrix_true_rows": [
+        [
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "foot_and_mouth": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571428571428571,
+          "support": 3
+        },
+        "healthy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "lumpy_skin": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "support": 4
+        },
+        "mastitis": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "support": 4
+        },
+        "unknown": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      }
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.2911431450260655,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9118165784832452,
+          "macro_f1": 0.9182573984650952,
+          "confusion_matrix_true_rows": [
+            [
+              90,
+              4,
+              0,
+              2,
+              0
+            ],
+            [
+              4,
+              172,
+              20,
+              0,
+              0
+            ],
+            [
+              3,
+              8,
+              181,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              1,
+              4,
+              2,
+              0,
+              51
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9183673469387755,
+              "recall": 0.9375,
+              "f1": 0.9278350515463918,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.9148936170212766,
+              "recall": 0.8775510204081632,
+              "f1": 0.8958333333333333,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.8916256157635468,
+              "recall": 0.9329896907216495,
+              "f1": 0.9118387909319899,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.8518518518518519,
+              "recall": 1.0,
+              "f1": 0.92,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 1.0,
+              "recall": 0.8793103448275862,
+              "f1": 0.9357798165137614,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8107801789255666
+    },
+    {
+      "epoch": 2,
+      "loss": 0.22656492243321594,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9206349206349206,
+          "macro_f1": 0.9289524547372512,
+          "confusion_matrix_true_rows": [
+            [
+              90,
+              4,
+              0,
+              2,
+              0
+            ],
+            [
+              2,
+              174,
+              19,
+              0,
+              1
+            ],
+            [
+              2,
+              7,
+              185,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              1,
+              4,
+              3,
+              0,
+              50
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9473684210526315,
+              "recall": 0.9375,
+              "f1": 0.9424083769633508,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.9206349206349206,
+              "recall": 0.8877551020408163,
+              "f1": 0.9038961038961038,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.893719806763285,
+              "recall": 0.9536082474226805,
+              "f1": 0.9226932668329176,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.92,
+              "recall": 1.0,
+              "f1": 0.9583333333333334,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 0.9803921568627451,
+              "recall": 0.8620689655172413,
+              "f1": 0.9174311926605505,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8182667183160757
+    },
+    {
+      "epoch": 3,
+      "loss": 0.2127139892576347,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9223985890652557,
+          "macro_f1": 0.9392939710338174,
+          "confusion_matrix_true_rows": [
+            [
+              91,
+              4,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              176,
+              19,
+              0,
+              0
+            ],
+            [
+              2,
+              11,
+              181,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              0,
+              4,
+              2,
+              0,
+              52
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9680851063829787,
+              "recall": 0.9479166666666666,
+              "f1": 0.9578947368421052,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.9025641025641026,
+              "recall": 0.8979591836734694,
+              "f1": 0.9002557544757034,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.8960396039603961,
+              "recall": 0.9329896907216495,
+              "f1": 0.914141414141414,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.9583333333333334,
+              "recall": 1.0,
+              "f1": 0.9787234042553191,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 1.0,
+              "recall": 0.896551724137931,
+              "f1": 0.9454545454545454,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8255057797236722
+    },
+    {
+      "epoch": 4,
+      "loss": 0.20121420749881924,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9223985890652557,
+          "macro_f1": 0.9387702847982936,
+          "confusion_matrix_true_rows": [
+            [
+              91,
+              4,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              177,
+              18,
+              0,
+              0
+            ],
+            [
+              2,
+              12,
+              180,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              1,
+              4,
+              1,
+              0,
+              52
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9578947368421052,
+              "recall": 0.9479166666666666,
+              "f1": 0.9528795811518324,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.8984771573604061,
+              "recall": 0.9030612244897959,
+              "f1": 0.900763358778626,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.9045226130653267,
+              "recall": 0.9278350515463918,
+              "f1": 0.916030534351145,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.9583333333333334,
+              "recall": 1.0,
+              "f1": 0.9787234042553191,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 1.0,
+              "recall": 0.896551724137931,
+              "f1": 0.9454545454545454,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8251391993588055
+    },
+    {
+      "epoch": 5,
+      "loss": 0.19487519851155818,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9223985890652557,
+          "macro_f1": 0.9361517328667646,
+          "confusion_matrix_true_rows": [
+            [
+              91,
+              4,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              177,
+              17,
+              0,
+              1
+            ],
+            [
+              2,
+              11,
+              181,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              1,
+              5,
+              1,
+              0,
+              51
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9578947368421052,
+              "recall": 0.9479166666666666,
+              "f1": 0.9528795811518324,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.8984771573604061,
+              "recall": 0.9030612244897959,
+              "f1": 0.900763358778626,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.9095477386934674,
+              "recall": 0.9329896907216495,
+              "f1": 0.9211195928753182,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.9583333333333334,
+              "recall": 1.0,
+              "f1": 0.9787234042553191,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 0.9807692307692307,
+              "recall": 0.8793103448275862,
+              "f1": 0.9272727272727272,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8233062130067352
+    },
+    {
+      "epoch": 6,
+      "loss": 0.19239256260423496,
+      "validation": {
+        "existing": {
+          "accuracy": 0.9206349206349206,
+          "macro_f1": 0.9349125597437447,
+          "confusion_matrix_true_rows": [
+            [
+              91,
+              4,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              175,
+              20,
+              0,
+              0
+            ],
+            [
+              2,
+              9,
+              183,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              23,
+              0
+            ],
+            [
+              1,
+              6,
+              1,
+              0,
+              50
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 0.9578947368421052,
+              "recall": 0.9479166666666666,
+              "f1": 0.9528795811518324,
+              "support": 96
+            },
+            "healthy": {
+              "precision": 0.9020618556701031,
+              "recall": 0.8928571428571429,
+              "f1": 0.8974358974358975,
+              "support": 196
+            },
+            "lumpy_skin": {
+              "precision": 0.8970588235294118,
+              "recall": 0.9432989690721649,
+              "f1": 0.9195979899497486,
+              "support": 194
+            },
+            "mastitis": {
+              "precision": 0.9583333333333334,
+              "recall": 1.0,
+              "f1": 0.9787234042553191,
+              "support": 23
+            },
+            "unknown": {
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259,
+              "support": 58
+            }
+          }
+        },
+        "user_added": {
+          "accuracy": 0.9090909090909091,
+          "macro_f1": 0.5599999999999999,
+          "confusion_matrix_true_rows": [
+            [
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "per_class": {
+            "foot_and_mouth": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3
+            },
+            "healthy": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "lumpy_skin": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "mastitis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "objective": 0.8224387918206213
+    }
+  ],
+  "best_epoch": 3,
+  "eligible_for_registration": true,
+  "checkpoint": "models/cattle_user_update_v2/best.pt",
+  "limitations": [
+    "Inherited disease labels unverified; new-domain evaluation very small",
+    "Old test reused; no independent clinical accuracy estimate",
+    "Chicken new photos differ from fecal input; separate domain results required",
+    "Hash heuristics cannot exclude all residual source overlap"
+  ],
+  "initial_checkpoint": "models/cattle_web_experimental_resnet18/best.pt",
+  "manifest_sha256": "991059678a22bc74e656bf2eee058b80e7f8bc35184a84a865aee922a574b067"
+}

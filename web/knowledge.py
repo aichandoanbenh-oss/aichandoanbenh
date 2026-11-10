@@ -26,11 +26,18 @@ def _base_information(label):
         return {'signs':'Ảnh có đặc điểm gần nhóm miệng/nước dãi bất thường trong bộ thử nghiệm. Nhóm này chỉ có 6 ảnh nguồn, chưa xác minh căn nguyên.','causes':'Chảy dãi hoặc sùi bọt có thể liên quan bệnh ở miệng, ngộ độc, co giật hoặc bệnh dại; ảnh không phân biệt được các nguyên nhân này.','care':'Tránh chạm vào miệng và nước bọt, không đến gần để chụp thêm. Liên hệ thú y để đánh giá, đặc biệt khi có thay đổi hành vi, khó nuốt hoặc liệt. Nếu người bị cắn/cào hoặc nước bọt vào niêm mạc/vết thương: rửa ngay và đến cơ sở y tế để đánh giá dự phòng dại, không chờ AI. Có thể mở mục sàng lọc nguy cơ dại để xem hướng dẫn tiếp theo.'}
     if label.lower()=='healthy':
         return {'signs':'Ảnh gần với nhóm đối chứng trong dữ liệu huấn luyện.', 'causes':'Kết quả này không loại trừ bệnh và không xác nhận con vật khỏe mạnh.', 'care':GENERAL}
-    signs,causes,care=DATA[label]
+    signs,causes,care=DATA.get(label,('Chưa bổ sung dấu hiệu cho lớp này.','Chưa bổ sung nguyên nhân cho lớp này.',GENERAL))
     return dict(signs=signs,causes=causes,care=care)
 
 def information(label):
-    return {**_base_information(label), **guidance(label), 'medications':medication(label)}
+    result={**_base_information(label), **guidance(label), 'medications':medication(label)}
+    import json
+    from pathlib import Path
+    try:
+        custom=json.loads((Path(__file__).parent/'custom_advice.json').read_text(encoding='utf-8-sig')).get(label,{})
+        result.update({k:v for k,v in custom.items() if k in result and isinstance(v,str) and v.strip()})
+    except (OSError,ValueError,AttributeError):pass
+    return result
 
 def reply(question, last):
     q=question.lower()

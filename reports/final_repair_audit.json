@@ -1,0 +1,669 @@
+{
+  "protocol": "Final untouched source-caption holdout: excludes known duplicates, inspected development probes, label-correction image, and postmortem photograph. Caption labels are not independently clinically confirmed; no Vietnamese farm validation. Original internal test reused through development, not an unbiased final accuracy estimate.",
+  "fresh_n": 11,
+  "models": {
+    "current": {
+      "checkpoint": "models/pig_web_experimental_resnet18/best.pt",
+      "architecture": "resnet18",
+      "classes": [
+        "Erysipelas",
+        "Greasy_Pig_Disease",
+        "Sarcoptic_Mange",
+        "unknown"
+      ],
+      "clean": {
+        "accuracy": 0.8714285714285714,
+        "macro_f1": 0.5766961651917404,
+        "confusion_matrix_true_rows": [
+          [
+            2,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            55
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 1.0,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 5
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 0.3,
+            "recall": 0.75,
+            "f1": 0.4285714285714285,
+            "support": 4
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1": 0.3333333333333333,
+            "support": 3
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 0.9482758620689655,
+            "f1": 0.9734513274336283,
+            "support": 58
+          }
+        },
+        "disease_only": {
+          "correct": 6,
+          "n": 12,
+          "accuracy": 0.5
+        }
+      },
+      "perturbed": {
+        "accuracy": 0.8285714285714286,
+        "macro_f1": 0.5507894066717596,
+        "confusion_matrix_true_rows": [
+          [
+            2,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            5,
+            1,
+            52
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 1.0,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 5
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 0.23076923076923078,
+            "recall": 0.75,
+            "f1": 0.3529411764705882,
+            "support": 4
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1": 0.3333333333333333,
+            "support": 3
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 0.896551724137931,
+            "f1": 0.9454545454545454,
+            "support": 58
+          }
+        },
+        "disease_only": {
+          "correct": 6,
+          "n": 12,
+          "accuracy": 0.5
+        }
+      },
+      "fresh_external": {
+        "accuracy": 0.09090909090909091,
+        "macro_f1": 0.049999999999999996,
+        "confusion_matrix_true_rows": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            6,
+            1,
+            1,
+            1
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 0.1111111111111111,
+            "f1": 0.19999999999999998,
+            "support": 9
+          }
+        },
+        "disease_only": {
+          "correct": 0,
+          "n": 2,
+          "accuracy": 0.0
+        }
+      },
+      "fresh_predictions": [
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_hyperplastic-and-hyperkeratotic-dermatitis_113.jpg",
+          "truth": "Sarcoptic_Mange",
+          "prediction": "Greasy_Pig_Disease",
+          "score": 0.9994677901268005,
+          "scores": [
+            2.4312637378898216e-06,
+            0.9994677901268005,
+            0.0003366481978446245,
+            0.00019317142141517252
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-ulcers_143.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.4518083930015564,
+          "scores": [
+            0.4518083930015564,
+            0.3938969373703003,
+            0.15415920317173004,
+            0.00013546671834774315
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_necrotizing-haemorrhagic-dermatitis_170.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.9933557510375977,
+          "scores": [
+            0.9933557510375977,
+            0.00216623954474926,
+            0.0044775838032364845,
+            4.977046046406031e-07
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_ring-shaped-coalescent-skin-lesions_175.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.9204367399215698,
+          "scores": [
+            0.9204367399215698,
+            0.048241280019283295,
+            0.03121565654873848,
+            0.00010633677447913215
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_necrotizing-dermatitis_231.jpg",
+          "truth": "unknown",
+          "prediction": "Greasy_Pig_Disease",
+          "score": 0.6622483730316162,
+          "scores": [
+            0.17027610540390015,
+            0.6622483730316162,
+            0.1674613207578659,
+            1.4245662896428257e-05
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-lesions_236.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.7244485020637512,
+          "scores": [
+            0.7244485020637512,
+            0.23751384019851685,
+            0.037898655980825424,
+            0.00013903739454690367
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-erythema_243.jpg",
+          "truth": "unknown",
+          "prediction": "Sarcoptic_Mange",
+          "score": 0.8975074291229248,
+          "scores": [
+            0.08442071080207825,
+            0.018063176423311234,
+            0.8975074291229248,
+            8.728035936655942e-06
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_generalised-skin-lesion_248.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.7202462553977966,
+          "scores": [
+            0.0001978980581043288,
+            0.2728472054004669,
+            0.006708626169711351,
+            0.7202462553977966
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-pustules_322.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.48565566539764404,
+          "scores": [
+            0.48565566539764404,
+            0.399033784866333,
+            0.11530768871307373,
+            2.8890960948046995e-06
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_papules-pustules-and-skin-erosions_346.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.8086389899253845,
+          "scores": [
+            0.8086389899253845,
+            0.18839555978775024,
+            0.0028979466296732426,
+            6.743710400769487e-05
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/subacute-exudative-epidermitis-piglets-cameron-sized.jpg",
+          "truth": "Greasy_Pig_Disease",
+          "prediction": "Sarcoptic_Mange",
+          "score": 0.8252668380737305,
+          "scores": [
+            4.562576094713222e-08,
+            0.06394125521183014,
+            0.8252668380737305,
+            0.1107918992638588
+          ]
+        }
+      ]
+    },
+    "corrected": {
+      "checkpoint": "models/pig_repair_v4_efficientnet_b0/best.pt",
+      "architecture": "efficientnet_b0",
+      "classes": [
+        "Erysipelas",
+        "Greasy_Pig_Disease",
+        "Sarcoptic_Mange",
+        "unknown"
+      ],
+      "clean": {
+        "accuracy": 0.9857142857142858,
+        "macro_f1": 0.9285714285714286,
+        "confusion_matrix_true_rows": [
+          [
+            5,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            58
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 5
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "support": 4
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.75,
+            "recall": 1.0,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 58
+          }
+        },
+        "disease_only": {
+          "correct": 11,
+          "n": 12,
+          "accuracy": 0.9166666666666666
+        }
+      },
+      "perturbed": {
+        "accuracy": 0.9571428571428572,
+        "macro_f1": 0.831159420289855,
+        "confusion_matrix_true_rows": [
+          [
+            5,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            57
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 5
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 0.6,
+            "recall": 0.75,
+            "f1": 0.6666666666666665,
+            "support": 4
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "f1": 0.6666666666666666,
+            "support": 3
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 0.9827586206896551,
+            "f1": 0.9913043478260869,
+            "support": 58
+          }
+        },
+        "disease_only": {
+          "correct": 10,
+          "n": 12,
+          "accuracy": 0.8333333333333334
+        }
+      },
+      "fresh_external": {
+        "accuracy": 0.45454545454545453,
+        "macro_f1": 0.17857142857142858,
+        "confusion_matrix_true_rows": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1,
+            5
+          ]
+        ],
+        "per_class": {
+          "Erysipelas": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "Greasy_Pig_Disease": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "Sarcoptic_Mange": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "unknown": {
+            "precision": 1.0,
+            "recall": 0.5555555555555556,
+            "f1": 0.7142857142857143,
+            "support": 9
+          }
+        },
+        "disease_only": {
+          "correct": 0,
+          "n": 2,
+          "accuracy": 0.0
+        }
+      },
+      "fresh_predictions": [
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_hyperplastic-and-hyperkeratotic-dermatitis_113.jpg",
+          "truth": "Sarcoptic_Mange",
+          "prediction": "Greasy_Pig_Disease",
+          "score": 0.8552520275115967,
+          "scores": [
+            0.001796078635379672,
+            0.8552520275115967,
+            0.006733451504260302,
+            0.1362183541059494
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-ulcers_143.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.3874231278896332,
+          "scores": [
+            0.1511077582836151,
+            0.2711850702762604,
+            0.19028408825397491,
+            0.3874231278896332
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_necrotizing-haemorrhagic-dermatitis_170.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.9408617615699768,
+          "scores": [
+            0.9408617615699768,
+            0.011211885139346123,
+            0.023830361664295197,
+            0.02409587986767292
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_ring-shaped-coalescent-skin-lesions_175.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.8428576588630676,
+          "scores": [
+            0.8428576588630676,
+            0.06195036321878433,
+            0.042001787573099136,
+            0.053190235048532486
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_necrotizing-dermatitis_231.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.31485819816589355,
+          "scores": [
+            0.254789263010025,
+            0.15553492307662964,
+            0.27481764554977417,
+            0.31485819816589355
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-lesions_236.jpg",
+          "truth": "unknown",
+          "prediction": "Erysipelas",
+          "score": 0.4510287940502167,
+          "scores": [
+            0.4510287940502167,
+            0.1254742294549942,
+            0.06515173614025116,
+            0.35834527015686035
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-erythema_243.jpg",
+          "truth": "unknown",
+          "prediction": "Sarcoptic_Mange",
+          "score": 0.46806877851486206,
+          "scores": [
+            0.4260852634906769,
+            0.05192514881491661,
+            0.46806877851486206,
+            0.05392085388302803
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_generalised-skin-lesion_248.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.8122814297676086,
+          "scores": [
+            0.024923481047153473,
+            0.06826367974281311,
+            0.09453140944242477,
+            0.8122814297676086
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_skin-pustules_322.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.37262555956840515,
+          "scores": [
+            0.34991928935050964,
+            0.017223093658685684,
+            0.2602320611476898,
+            0.37262555956840515
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/atlas_papules-pustules-and-skin-erosions_346.jpg",
+          "truth": "unknown",
+          "prediction": "unknown",
+          "score": 0.6727281808853149,
+          "scores": [
+            0.08160320669412613,
+            0.14701952040195465,
+            0.09864918142557144,
+            0.6727281808853149
+          ]
+        },
+        {
+          "image_path": "data/raw/external_pig_audit/subacute-exudative-epidermitis-piglets-cameron-sized.jpg",
+          "truth": "Greasy_Pig_Disease",
+          "prediction": "Sarcoptic_Mange",
+          "score": 0.370708167552948,
+          "scores": [
+            0.038951024413108826,
+            0.3698325455188751,
+            0.370708167552948,
+            0.22050827741622925
+          ]
+        }
+      ]
+    }
+  },
+  "gate_checks": {
+    "internal_disease_improved": true,
+    "perturbed_disease_not_worse": true,
+    "generic_unknown_recall_at_least_90pct": true,
+    "fresh_disease_not_worse": true,
+    "fresh_unknown_not_worse": true,
+    "fresh_total_improved": true
+  },
+  "promote_candidate": true
+}

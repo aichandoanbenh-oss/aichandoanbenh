@@ -20,4 +20,4 @@ DRUGS = {
 }
 
 def medication(label):
-    return DRUGS['healthy' if label.lower()=='healthy' else label]
+    return DRUGS.get('healthy' if label.lower()=='healthy' else label,'Chưa bổ sung thông tin thuốc cho lớp này. Cần thú y xác nhận bệnh trước khi chọn thuốc và liều dùng.')

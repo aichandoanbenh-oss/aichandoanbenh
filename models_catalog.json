@@ -32,14 +32,15 @@
       "lumpy_skin": "Viêm da nổi cục",
       "mastitis": "Viêm vú"
     },
-    "web_checkpoint": "models/cattle_web_experimental_resnet18/best.pt",
+    "web_checkpoint": "models/cattle_user_update_v2/best.pt",
     "web_labels_vi": {
       "foot_and_mouth": "Lở mồm long móng",
       "healthy": "Đối chứng bình thường theo dataset",
       "lumpy_skin": "Viêm da nổi cục",
       "mastitis": "Viêm vú",
       "unknown": "Ngoài phạm vi / chưa nhận diện được"
-    }
+    },
+    "user_training_update_report": "reports/user_training_update_v2/cattle.json"
   },
   "chicken": {
     "checkpoint": "models/chicken_experimental_resnet18/best.pt",
@@ -50,14 +51,15 @@
       "New Castle Disease": "Newcastle",
       "Salmonella": "Salmonella (chưa xác định serovar)"
     },
-    "web_checkpoint": "models/chicken_web_experimental_resnet18/best.pt",
+    "web_checkpoint": "models/chicken_user_update_v1/best.pt",
     "web_labels_vi": {
       "Coccidiosis": "Cầu trùng",
       "Healthy": "Đối chứng bình thường theo dataset",
       "New Castle Disease": "Newcastle",
       "Salmonella": "Salmonella (chưa xác định serovar)",
       "unknown": "Ngoài phạm vi / chưa nhận diện được"
-    }
+    },
+    "user_training_update_report": "reports/user_training_update_v1/chicken.json"
   },
   "pig": {
     "checkpoint": "models/pig_experimental_resnet18/best.pt",

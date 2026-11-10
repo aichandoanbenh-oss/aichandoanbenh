@@ -90,5 +90,5 @@ SPECIAL = {
 
 def guidance(label):
     key = 'healthy' if label.lower() == 'healthy' else label
-    values = GUIDANCE.get(key) or SPECIAL[key]
+    values = GUIDANCE.get(key) or SPECIAL.get(key) or ('Cần thú y xác minh nguyên nhân trước khi điều trị.', 'Giữ vệ sinh nơi nuôi và theo dõi các con tiếp xúc.', 'Liên hệ thú y ngay nếu khó thở, co giật hoặc yếu nhanh.', 'Ghi lại triệu chứng và thời điểm xuất hiện; bổ sung hướng dẫn riêng cho bệnh.')
     return dict(zip(('treatment', 'prevention', 'urgent', 'monitoring'), values))

@@ -22,7 +22,8 @@ from web.rabies import Screening, assess, QUESTIONS
 ROOT=Path(__file__).resolve().parents[1]
 STATE=Path(os.environ.get('VETLENS_STATE_DIR',str(ROOT/'data/web'))); STATE.mkdir(parents=True,exist_ok=True)
 CATALOG=json.loads((ROOT/'models_catalog.json').read_text(encoding='utf-8'))
-SPECIES={'dog':'Chó','cattle':'Bò','chicken':'Gà','pig':'Lợn'}
+DEFAULT_NAMES={'dog':'Chó','cattle':'Bò','chicken':'Gà','pig':'Lợn'}
+SPECIES={s:entry.get('display_name',DEFAULT_NAMES.get(s,s)) for s,entry in CATALOG.items() if isinstance(entry,dict) and 'checkpoint' in entry}
 app=FastAPI(title='VetLens · Nhận diện ảnh động vật')
 app.mount('/static',StaticFiles(directory=ROOT/'web/static'),name='static')
 torch.set_num_threads(4)
@@ -72,7 +73,7 @@ def health(): return {'status':'ok'}
 
 @app.get('/api/models')
 def catalog():
-    return [{ 'id':s,'name':name,'classes':list(CATALOG[s].get('web_labels_vi',CATALOG[s]['labels_vi']).values()),'available':(ROOT/CATALOG[s].get('web_checkpoint',CATALOG[s]['checkpoint'])).exists()} for s,name in SPECIES.items()]
+    return [{ 'id':s,'name':name,'hint':CATALOG[s].get('input_hint',''),'classes':list(CATALOG[s].get('web_labels_vi',CATALOG[s]['labels_vi']).values()),'available':(ROOT/CATALOG[s].get('web_checkpoint',CATALOG[s]['checkpoint'])).exists()} for s,name in SPECIES.items()]
 
 @app.get('/api/chats')
 def chats(request:Request):

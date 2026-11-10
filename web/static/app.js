@@ -1,5 +1,21 @@
 const $=s=>document.querySelector(s);
 let chat=null,species='dog',busy=false,previewURL=null;
+const speciesNames={dog:'Chó',cattle:'Bò',pig:'Lợn',chicken:'Gà'};
+async function loadSpecies(){
+ const models=await api('/api/models');
+ const available=models.filter(m=>m.available);
+ const container=$('#species');
+ for(const button of container.querySelectorAll('[data-species]'))button.hidden=!available.some(m=>m.id===button.dataset.species);
+ for(const m of available){
+  speciesNames[m.id]=m.name;if(m.hint)hints[m.id]=m.hint;
+  let button=Array.from(container.children).find(b=>b.dataset.species===m.id);
+  if(!button){button=node('button','');button.type='button';button.dataset.species=m.id;button.append(node('span','',m.name),node('i','','✓'));container.append(button);}
+  button.querySelector('span').textContent=m.name;
+ }
+ if(!available.some(m=>m.id===species)&&available.length)species=available[0].id;
+ for(const b of container.children)b.classList.toggle('selected',b.dataset.species===species);
+ hint();
+}
 const hints={dog:'Chó: ảnh da hoặc vùng miệng; ảnh không xác nhận hay loại trừ dại.',cattle:'Bò: ảnh da, miệng, chân hoặc bầu vú.',pig:'Lợn: ảnh vùng da bất thường.',chicken:'Gà: ảnh phân, không dùng ảnh toàn thân.'};
 function hint(){$('#hint').textContent=hints[species];const entry=$('#rabies-entry');if(entry)entry.hidden=species!=='dog';}hint();
 async function api(url,options={}){const r=await fetch(url,options);if(!r.ok){let e;try{e=await r.json();}catch{}throw Error(typeof e?.detail==='string'?e.detail:'Yêu cầu không thành công. Vui lòng thử lại.');}return r.json();}
@@ -19,7 +35,7 @@ function resultCard(r){
  if(r.scores.length)head.append(node('span','score-badge','Điểm: '+(r.scores[0].score*100).toFixed(1)+'%'));
  card.append(head);
  const meta=node('div','result-meta');
- const speciesName={dog:'Chó',cattle:'Bò',pig:'Lợn',chicken:'Gà'}[r.species]||'Chưa chọn';
+ const speciesName=speciesNames[r.species]||r.species||'Chưa chọn';
  for(const [title,value] of [['Loài vật nuôi',speciesName],['Loại đầu vào',r.species==='chicken'?'Ảnh phân':'Ảnh quan sát'],['Đánh giá chuyên môn','Cần thú y xác minh']]){const tile=node('div','meta-tile');tile.append(node('span','',title),node('strong','',value));meta.append(tile);}card.append(meta);
  const makeGroup=(title,cls)=>{const group=node('details','advice-group '+cls);group.open=true;const summary=node('summary','');summary.append(outlineIcon(),document.createTextNode(title));group.append(summary);card.append(group);return group;};
  const add=(parent,key,title,list=false)=>{if(!r.info[key])return;const section=node('section','care-section'+(key==='urgent'?' emergency':''));section.dataset.key=key;section.append(node('h4','',title));if(list){const ol=node('ol','advice-steps');const sentences=r.info[key].match(/[^.!?]+(?:[.!?]+|$)/g)||[r.info[key]];for(const sentence of sentences)if(sentence.trim())ol.append(node('li','',sentence.trim()));section.append(ol);}else section.append(node('p','text',r.info[key]));parent.append(section);};
@@ -42,6 +58,7 @@ $('#new').onclick=()=>{if(busy)return;chat=null;clearFile();$('#question').value
 $('#composer').onsubmit=async e=>{e.preventDefault();if(busy)return;const text=$('#question').value.trim(),file=$('#file').files[0];if(!text&&!file){status('Chọn ảnh hoặc nhập câu hỏi trước khi gửi.');return;}setBusy(true);status(file?'Đang phân tích ảnh, lần đầu có thể mất vài giây…':'Đang trả lời…');try{if(!chat)chat=(await api('/api/chats',{method:'POST'})).id;if(file){const data=new FormData();data.append('species',species);data.append('file',file);data.append('note',text);await api('/api/chats/'+chat+'/predict',{method:'POST',body:data});}else await api('/api/chats/'+chat+'/message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});clearFile();$('#question').value='';await render();await history();status('');}catch(e){status(e.message);}finally{setBusy(false);}};
 document.querySelectorAll('[data-question]').forEach(b=>b.onclick=()=>{if(busy)return;$('#question').value=b.dataset.question;$('#question').focus();});
 history().catch(e=>status('Không kết nối được máy chủ: '+e.message));
+loadSpecies().catch(e=>status('Không tải được danh sách loài: '+e.message));
 
 function rabiesCard(r){
  const card=node('div','result');card.append(node('div','kicker','SÀNG LỌC NGUY CƠ BỆNH DẠI'),node('h3','',r.name),node('p','warning',r.method));
@@ -64,4 +81,4 @@ entry.onclick=async()=>{
 
 $('#history-toggle').onclick=()=>{const nav=$('#history');nav.hidden=!nav.hidden;if(!nav.hidden){nav.scrollIntoView({behavior:'smooth',block:'start'});nav.querySelector('button')?.focus();}};
 
-const about=node('details','');about.append(node('summary','','Thông tin mô hình'));const aboutText=node('p','');aboutText.textContent='4 loài · AI thử nghiệm. Chó · Ảnh bệnh da hoặc dấu hiệu miệng/nước dãi. Nhánh miệng còn rất ít dữ liệu và đã bỏ sót ảnh test; không loại trừ dại. Không đến gần chó nghi dại để chụp ảnh.';about.append(aboutText);document.querySelector('.sidebar-bottom').append(about);
+const about=node('details','');about.append(node('summary','','Thông tin mô hình'));const aboutText=node('p','');aboutText.textContent='Nhiều loài · AI thử nghiệm. Chó · Ảnh bệnh da hoặc dấu hiệu miệng/nước dãi. Nhánh miệng còn rất ít dữ liệu và đã bỏ sót ảnh test; không loại trừ dại. Không đến gần chó nghi dại để chụp ảnh.';about.append(aboutText);document.querySelector('.sidebar-bottom').append(about);
