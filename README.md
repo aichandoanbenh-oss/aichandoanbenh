@@ -1,27 +1,28 @@
-# Deploy VetLens PWA trên Render
+# VetLens – web thử nghiệm
 
-Bản web/PWA dùng cùng mô hình và nội dung tư vấn hiện tại. iPhone cài qua Safari → Chia sẻ → Thêm vào Màn hình chính. Trang `/install` hướng dẫn chi tiết. Không có file APK cho iOS; phân tích và lịch sử cần kết nối tới server. Service worker chỉ cache trang hướng dẫn, tài nguyên công khai và trang mất kết nối; không cache API, ảnh người dùng hay hội thoại.
+Web hỗ trợ bò, lợn và gà. Gà có hai nhánh: ảnh phân và ảnh toàn thân/vùng bệnh.
+Chức năng chẩn đoán chó đã được loại khỏi API và giao diện.
 
-## Cách triển khai
+## Chạy và triển khai
 
-1. Dùng `dist/vetlens-render.zip`, giải nén vào một repo GitHub mới, để `render.yaml` ở gốc repo. Gói này chứa code web và đúng bốn checkpoint đang dùng; không chứa dữ liệu huấn luyện, ảnh người dùng, lịch sử hoặc APK.
-2. Commit và push bằng Git trên máy tính. Không upload mô hình qua giao diện web GitHub vì giới hạn kích thước upload từng file. Không copy `.gitignore` của dự án gốc vào repo này vì nó đang loại toàn bộ thư mục `models/`.
-3. Render → New → Blueprint → chọn repo → kiểm tra cấu hình rồi deploy. Blueprint chọn gói `standard` và ổ đĩa persistent 1 GB, có phí theo giá Render tại thời điểm triển khai. Chọn cấu hình RAM đủ cho PyTorch và bốn mô hình; chưa đo tải production trên Render. Không tự đổi sang gói RAM thấp khi chưa kiểm tra bộ nhớ.
-4. Build cài PyTorch CPU, dependency web, rồi kiểm tra đủ checkpoint. Start chạy một worker Uvicorn trên `$PORT`. Health check: `/healthz`.
-5. Mở URL HTTPS Render cấp, kiểm tra `/api/models`: cả bốn mục phải có `available: true`. Upload ảnh thử thực tế cho từng loài trước khi chia sẻ URL.
-6. Chia sẻ `https://TEN-DICH-VU.onrender.com/install` cho người dùng iPhone. Không dùng localhost trên điện thoại. HTTPS là điều kiện để service worker hoạt động ngoài máy phát triển.
+Python 3.12: cài requirements-render.txt rồi chạy
+`uvicorn web.app:app --host 0.0.0.0 --port 8000 --workers 1`.
+Render dùng render.yaml; build kiểm tra đủ cả bốn checkpoint, kể cả gà toàn thân.
+`/healthz` kiểm tra tiến trình; `/api/models` kiểm tra nhánh mô hình sẵn có.
+Kho chính: https://github.com/aichandoanbenh-oss/aichandoanbenh
+Web: https://aichandoanbenh.onrender.com
 
-Nếu deploy từ repo dự án gốc thay vì gói riêng, cần đưa đúng các đường dẫn `web_checkpoint` trong `models_catalog.json` lên repo (có thể dùng `git add -f` cho từng file). Script build sẽ dừng nếu thiếu mô hình. Không cần đưa toàn bộ `data/`, `.venv/`, Android hoặc dataset lên Render.
+## Bản mô hình hiện tại
 
-## Dữ liệu và cập nhật
+Xem release.json để đối chiếu checkpoint và SHA256. Bò/gà phân dùng ResNet18;
+lợn/gà toàn thân dùng EfficientNet-B0. Nhãn toàn thân gà chỉ là nhóm dấu hiệu.
+Web xử lý trên máy chủ bằng PyTorch; PWA không tự suy luận ngoại tuyến.
 
-- `VETLENS_STATE_DIR=/var/data/vetlens` đặt SQLite trên persistent disk. Không dùng nhiều replica hoặc nhiều service chung file SQLite.
-- Nếu tự chọn gói không có persistent disk, lịch sử có thể mất khi restart/redeploy. Cookie cũ không khôi phục được dữ liệu server đã mất.
-- Chưa có đăng nhập: lịch sử gắn với cookie. Safari và PWA có thể dùng phiên khác nhau, chưa có đồng bộ giữa thiết bị.
-- Khi thay tài nguyên cache, tăng tên CACHE trong `web/static/sw.js`. Service worker mới được kích hoạt khi các cửa sổ cũ đóng; mở lại ứng dụng để nhận bản mới.
-- iPhone HEIC: backend hiện chưa hỗ trợ giải mã HEIC trực tiếp; nếu trình duyệt không chuyển đổi ảnh, dùng ảnh JPEG/PNG hoặc ảnh chụp màn hình. Không coi PWA là đã hỗ trợ mọi định dạng thư viện iPhone.
-- Sau deploy, thử cài thật trên iPhone, thử mất mạng rồi kết nối lại, và kiểm tra lịch sử sau restart. Kiểm tra trình duyệt desktop không thay thế nghiệm thu trên iOS thật.
+Đây là bản thử nghiệm round3, chưa đạt mục tiêu 80% trên bộ ảnh ngoài của APK:
+53/70 (75,7%); bộ cũ 64/81. Đây là tham chiếu kiểm thử APK, không phải kiểm định
+độ chính xác chẩn đoán lâm sàng hoặc đo trực tiếp web Render.
 
-## Chạy local
-
-Chạy `.\start_web.ps1`, truy cập `http://127.0.0.1:8000/install`. Tạo lại gói deploy bằng `.\.venv\Scripts\python.exe scripts/package_render.py`. Cấu hình Render và gói đã chuẩn bị; chưa được tự động deploy lên tài khoản Render.
+Kho không chứa ảnh huấn luyện gốc, ảnh người dùng, lịch sử, APK hoặc thông tin bí mật.
+Thành phần gà toàn thân có nguồn và nghĩa vụ AGPL-3.0: đọc BODY_NOTICE.md và
+licenses/chicken_body/AGPL-3.0.txt. Mã train và manifest tương ứng nằm trong
+scripts/ và training_sources/; không suy ra ảnh nguồn được tự do phân phối.

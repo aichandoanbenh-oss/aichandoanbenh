@@ -29,7 +29,24 @@ def _base_information(label):
     signs,causes,care=DATA.get(label,('Chưa bổ sung dấu hiệu cho lớp này.','Chưa bổ sung nguyên nhân cho lớp này.',GENERAL))
     return dict(signs=signs,causes=causes,care=care)
 
-def information(label):
+def information(label,input_type=None):
+    if label=='unknown' and input_type=='body':
+        return {'signs':'Chưa nhận diện được một nhóm dấu hiệu bên ngoài đang hỗ trợ. Không có nghĩa là gà khỏe mạnh.',
+                'causes':'Có thể ảnh không rõ, dấu hiệu chưa được hỗ trợ, con vật khác hoặc mô hình phân loại sai.',
+                'care':'Chọn đúng loại ảnh, chụp rõ vùng bất thường khi có thể làm an toàn. Không cố mở miệng, bóc vảy hoặc dùng ảnh mổ khám. Liên hệ thú y nếu gà có triệu chứng.',
+                'urgent':'Khó thở, liệt, co giật hoặc nhiều con chết cần liên hệ thú y ngay.',
+                'medications':'Không lựa chọn thuốc hoặc liều dùng từ kết quả chưa nhận diện được.'}
+    if label in {'chicken_skin_lesions','chicken_head_neuro_signs'}:
+        skin=label=='chicken_skin_lesions'
+        return {
+            'signs': 'Ảnh gần nhóm tổn thương da, nốt sần hoặc đóng vảy vùng đầu/mào.' if skin else 'Ảnh gần nhóm bất thường vùng đầu, mắt hoặc tư thế như sưng, đổi màu hay vẹo cổ.',
+            'causes': 'Có thể gặp ở đậu gà, chấn thương, ký sinh trùng hoặc nhiễm trùng khác; hình ảnh không xác định được nguyên nhân.' if skin else 'Newcastle, bệnh hô hấp, thiếu dinh dưỡng, chấn thương và nhiều nguyên nhân khác có thể có biểu hiện chồng lấn. Không suy ra bệnh Newcastle chỉ từ ảnh.',
+            'care': 'Tách con có dấu hiệu bất thường khi có thể, giữ dụng cụ và chuồng sạch, theo dõi ăn uống và liên hệ thú y. Không bóc vảy hay cố mở miệng để chụp ảnh.',
+            'treatment': 'Cần khám và xét nghiệm khi phù hợp trước khi chọn điều trị. Mô hình này chỉ phân nhóm dấu hiệu, không đưa chẩn đoán tác nhân hoặc phác đồ từ ảnh.',
+            'prevention': 'Vệ sinh chuồng, kiểm soát côn trùng, cách ly con mới và thực hiện lịch vaccine theo hướng dẫn thú y địa phương.',
+            'urgent': 'Khó thở, co giật, liệt, không đứng được hoặc nhiều con chết cần liên hệ thú y ngay; hạn chế di chuyển đàn.',
+            'monitoring': 'Ghi tuổi gà, số con có dấu hiệu, thời điểm khởi phát, ăn uống, hô hấp và tiền sử vaccine. Ảnh toàn thân và ảnh phân được phân tích bằng hai nhánh riêng.',
+            'medications': 'Không chọn kháng sinh, thuốc hay liều dùng chỉ dựa trên nhóm dấu hiệu từ ảnh. Thú y cần xác định nguyên nhân và thời gian ngừng thuốc nếu có.'}
     result={**_base_information(label), **guidance(label), 'medications':medication(label)}
     import json
     from pathlib import Path
@@ -51,7 +68,7 @@ def reply(question, last):
         return 'Bạn chọn loài rồi gửi ảnh vùng tổn thương; riêng gà dùng ảnh phân. Sau khi có kết quả, bạn có thể hỏi về dấu hiệu, nguyên nhân hoặc hướng xử trí. Phần chat trả lời từ nội dung tham khảo có sẵn, chưa hỗ trợ tư vấn tự do.'
     info=last['info']; name=last['name']
     if last.get('label'):
-        info=information(last['label'])
+        info=information(last['label'],input_type=last.get('input_type'))
     if any(w in q for w in ['nguyên nhân','vì sao','tại sao']): text=info['causes']
     elif any(w in q for w in ['dấu hiệu','triệu chứng','biểu hiện']): text=info['signs']
     elif any(w in q for w in ['phòng','ngừa','vệ sinh','vaccine','vắc xin']): text=info.get('prevention',GENERAL)

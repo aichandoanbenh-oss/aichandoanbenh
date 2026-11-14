@@ -1,0 +1,716 @@
+{
+  "chosen": {
+    "checkpoint": "models/round3_body_efficientnet_imagenet_seed17/best.pt",
+    "epoch": 8,
+    "seed": 17,
+    "mode": "efficientnet_imagenet",
+    "rank": 2.7734532787473967,
+    "regression_guard": true,
+    "validation": {
+      "all": {
+        "accuracy": 0.9014084507042254,
+        "macro_f1": 0.8630292471755886,
+        "confusion_matrix_true_rows": [
+          [
+            18,
+            3,
+            1
+          ],
+          [
+            1,
+            9,
+            2
+          ],
+          [
+            0,
+            0,
+            37
+          ]
+        ],
+        "per_class": {
+          "chicken_skin_lesions": {
+            "precision": 0.9473684210526315,
+            "recall": 0.8181818181818182,
+            "f1": 0.8780487804878049,
+            "support": 22
+          },
+          "chicken_head_neuro_signs": {
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1": 0.75,
+            "support": 12
+          },
+          "unknown": {
+            "precision": 0.925,
+            "recall": 1.0,
+            "f1": 0.961038961038961,
+            "support": 37
+          }
+        },
+        "n": 71,
+        "correct": 64,
+        "macro_f1_present": 0.8630292471755886
+      },
+      "legacy": {
+        "accuracy": 0.9629629629629629,
+        "macro_f1": 0.9287342287342287,
+        "confusion_matrix_true_rows": [
+          [
+            17,
+            0,
+            1
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            32
+          ]
+        ],
+        "per_class": {
+          "chicken_skin_lesions": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9444444444444444,
+            "f1": 0.9444444444444444,
+            "support": 18
+          },
+          "chicken_head_neuro_signs": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "support": 4
+          },
+          "unknown": {
+            "precision": 0.9696969696969697,
+            "recall": 1.0,
+            "f1": 0.9846153846153847,
+            "support": 32
+          }
+        },
+        "n": 54,
+        "correct": 52,
+        "macro_f1_present": 0.9287342287342287
+      },
+      "new": {
+        "accuracy": 0.7058823529411765,
+        "macro_f1": 0.64640522875817,
+        "confusion_matrix_true_rows": [
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "per_class": {
+          "chicken_skin_lesions": {
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1": 0.4,
+            "support": 4
+          },
+          "chicken_head_neuro_signs": {
+            "precision": 0.6666666666666666,
+            "recall": 0.75,
+            "f1": 0.7058823529411765,
+            "support": 8
+          },
+          "unknown": {
+            "precision": 0.7142857142857143,
+            "recall": 1.0,
+            "f1": 0.8333333333333333,
+            "support": 5
+          }
+        },
+        "n": 17,
+        "correct": 12,
+        "macro_f1_present": 0.64640522875817
+      }
+    }
+  },
+  "candidates": [
+    {
+      "checkpoint": "models/round3_body_current_seed17/best.pt",
+      "epoch": 4,
+      "seed": 17,
+      "mode": "current",
+      "rank": 2.6544843938961584,
+      "regression_guard": true,
+      "validation": {
+        "all": {
+          "accuracy": 0.8450704225352113,
+          "macro_f1": 0.7759612069444909,
+          "confusion_matrix_true_rows": [
+            [
+              18,
+              0,
+              4
+            ],
+            [
+              3,
+              5,
+              4
+            ],
+            [
+              0,
+              0,
+              37
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.8571428571428571,
+              "recall": 0.8181818181818182,
+              "f1": 0.8372093023255814,
+              "support": 22
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.4166666666666667,
+              "f1": 0.5882352941176471,
+              "support": 12
+            },
+            "unknown": {
+              "precision": 0.8222222222222222,
+              "recall": 1.0,
+              "f1": 0.9024390243902439,
+              "support": 37
+            }
+          },
+          "n": 71,
+          "correct": 60,
+          "macro_f1_present": 0.7759612069444909
+        },
+        "legacy": {
+          "accuracy": 0.9444444444444444,
+          "macro_f1": 0.8567336567336566,
+          "confusion_matrix_true_rows": [
+            [
+              17,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              32
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.8947368421052632,
+              "recall": 0.9444444444444444,
+              "f1": 0.918918918918919,
+              "support": 18
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.9696969696969697,
+              "recall": 1.0,
+              "f1": 0.9846153846153847,
+              "support": 32
+            }
+          },
+          "n": 54,
+          "correct": 51,
+          "macro_f1_present": 0.8567336567336566
+        },
+        "new": {
+          "accuracy": 0.5294117647058824,
+          "macro_f1": 0.489007724301842,
+          "confusion_matrix_true_rows": [
+            [
+              1,
+              0,
+              3
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.5,
+              "recall": 0.25,
+              "f1": 0.3333333333333333,
+              "support": 4
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.375,
+              "f1": 0.5454545454545454,
+              "support": 8
+            },
+            "unknown": {
+              "precision": 0.4166666666666667,
+              "recall": 1.0,
+              "f1": 0.5882352941176471,
+              "support": 5
+            }
+          },
+          "n": 17,
+          "correct": 9,
+          "macro_f1_present": 0.48900772430184186
+        }
+      }
+    },
+    {
+      "checkpoint": "models/round3_body_efficientnet_imagenet_seed42/best.pt",
+      "epoch": 10,
+      "seed": 42,
+      "mode": "efficientnet_imagenet",
+      "rank": 2.682355542355542,
+      "regression_guard": true,
+      "validation": {
+        "all": {
+          "accuracy": 0.8591549295774648,
+          "macro_f1": 0.8066378066378066,
+          "confusion_matrix_true_rows": [
+            [
+              18,
+              2,
+              2
+            ],
+            [
+              3,
+              7,
+              2
+            ],
+            [
+              1,
+              0,
+              36
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.8181818181818182,
+              "recall": 0.8181818181818182,
+              "f1": 0.8181818181818182,
+              "support": 22
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 0.7777777777777778,
+              "recall": 0.5833333333333334,
+              "f1": 0.6666666666666666,
+              "support": 12
+            },
+            "unknown": {
+              "precision": 0.9,
+              "recall": 0.972972972972973,
+              "f1": 0.935064935064935,
+              "support": 37
+            }
+          },
+          "n": 71,
+          "correct": 61,
+          "macro_f1_present": 0.8066378066378066
+        },
+        "legacy": {
+          "accuracy": 0.9444444444444444,
+          "macro_f1": 0.8567336567336566,
+          "confusion_matrix_true_rows": [
+            [
+              17,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              32
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.8947368421052632,
+              "recall": 0.9444444444444444,
+              "f1": 0.918918918918919,
+              "support": 18
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.9696969696969697,
+              "recall": 1.0,
+              "f1": 0.9846153846153847,
+              "support": 32
+            }
+          },
+          "n": 54,
+          "correct": 51,
+          "macro_f1_present": 0.8567336567336566
+        },
+        "new": {
+          "accuracy": 0.5882352941176471,
+          "macro_f1": 0.5396825396825397,
+          "confusion_matrix_true_rows": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              5,
+              2
+            ],
+            [
+              1,
+              0,
+              4
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.3333333333333333,
+              "recall": 0.25,
+              "f1": 0.28571428571428575,
+              "support": 4
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 0.7142857142857143,
+              "recall": 0.625,
+              "f1": 0.6666666666666666,
+              "support": 8
+            },
+            "unknown": {
+              "precision": 0.5714285714285714,
+              "recall": 0.8,
+              "f1": 0.6666666666666666,
+              "support": 5
+            }
+          },
+          "n": 17,
+          "correct": 10,
+          "macro_f1_present": 0.5396825396825397
+        }
+      }
+    },
+    {
+      "checkpoint": "models/round3_body_current_seed42/best.pt",
+      "epoch": 9,
+      "seed": 42,
+      "mode": "current",
+      "rank": 2.688928838340603,
+      "regression_guard": true,
+      "validation": {
+        "all": {
+          "accuracy": 0.8591549295774648,
+          "macro_f1": 0.8087495160665892,
+          "confusion_matrix_true_rows": [
+            [
+              18,
+              0,
+              4
+            ],
+            [
+              2,
+              6,
+              4
+            ],
+            [
+              0,
+              0,
+              37
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.9,
+              "recall": 0.8181818181818182,
+              "f1": 0.8571428571428572,
+              "support": 22
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 12
+            },
+            "unknown": {
+              "precision": 0.8222222222222222,
+              "recall": 1.0,
+              "f1": 0.9024390243902439,
+              "support": 37
+            }
+          },
+          "n": 71,
+          "correct": 61,
+          "macro_f1_present": 0.8087495160665892
+        },
+        "legacy": {
+          "accuracy": 0.9444444444444444,
+          "macro_f1": 0.8567336567336566,
+          "confusion_matrix_true_rows": [
+            [
+              17,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              32
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.8947368421052632,
+              "recall": 0.9444444444444444,
+              "f1": 0.918918918918919,
+              "support": 18
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.9696969696969697,
+              "recall": 1.0,
+              "f1": 0.9846153846153847,
+              "support": 32
+            }
+          },
+          "n": 54,
+          "correct": 51,
+          "macro_f1_present": 0.8567336567336566
+        },
+        "new": {
+          "accuracy": 0.5882352941176471,
+          "macro_f1": 0.5516339869281045,
+          "confusion_matrix_true_rows": [
+            [
+              1,
+              0,
+              3
+            ],
+            [
+              0,
+              4,
+              4
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1": 0.4,
+              "support": 4
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 8
+            },
+            "unknown": {
+              "precision": 0.4166666666666667,
+              "recall": 1.0,
+              "f1": 0.5882352941176471,
+              "support": 5
+            }
+          },
+          "n": 17,
+          "correct": 10,
+          "macro_f1_present": 0.5516339869281045
+        }
+      }
+    },
+    {
+      "checkpoint": "models/round3_body_efficientnet_imagenet_seed17/best.pt",
+      "epoch": 8,
+      "seed": 17,
+      "mode": "efficientnet_imagenet",
+      "rank": 2.7734532787473967,
+      "regression_guard": true,
+      "validation": {
+        "all": {
+          "accuracy": 0.9014084507042254,
+          "macro_f1": 0.8630292471755886,
+          "confusion_matrix_true_rows": [
+            [
+              18,
+              3,
+              1
+            ],
+            [
+              1,
+              9,
+              2
+            ],
+            [
+              0,
+              0,
+              37
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.9473684210526315,
+              "recall": 0.8181818181818182,
+              "f1": 0.8780487804878049,
+              "support": 22
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75,
+              "support": 12
+            },
+            "unknown": {
+              "precision": 0.925,
+              "recall": 1.0,
+              "f1": 0.961038961038961,
+              "support": 37
+            }
+          },
+          "n": 71,
+          "correct": 64,
+          "macro_f1_present": 0.8630292471755886
+        },
+        "legacy": {
+          "accuracy": 0.9629629629629629,
+          "macro_f1": 0.9287342287342287,
+          "confusion_matrix_true_rows": [
+            [
+              17,
+              0,
+              1
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              32
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 0.9444444444444444,
+              "recall": 0.9444444444444444,
+              "f1": 0.9444444444444444,
+              "support": 18
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571,
+              "support": 4
+            },
+            "unknown": {
+              "precision": 0.9696969696969697,
+              "recall": 1.0,
+              "f1": 0.9846153846153847,
+              "support": 32
+            }
+          },
+          "n": 54,
+          "correct": 52,
+          "macro_f1_present": 0.9287342287342287
+        },
+        "new": {
+          "accuracy": 0.7058823529411765,
+          "macro_f1": 0.64640522875817,
+          "confusion_matrix_true_rows": [
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              6,
+              2
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "per_class": {
+            "chicken_skin_lesions": {
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1": 0.4,
+              "support": 4
+            },
+            "chicken_head_neuro_signs": {
+              "precision": 0.6666666666666666,
+              "recall": 0.75,
+              "f1": 0.7058823529411765,
+              "support": 8
+            },
+            "unknown": {
+              "precision": 0.7142857142857143,
+              "recall": 1.0,
+              "f1": 0.8333333333333333,
+              "support": 5
+            }
+          },
+          "n": 17,
+          "correct": 12,
+          "macro_f1_present": 0.64640522875817
+        }
+      }
+    }
+  ],
+  "test_used_for_selection": false,
+  "test_manifest_sha256": "7e0a81ff82de35af67567b881248967df046c73411925bd0a40a417cd08d1aa1"
+}

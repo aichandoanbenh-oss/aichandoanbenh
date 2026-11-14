@@ -1,0 +1,38 @@
+{
+  "branch": "body",
+  "initial_checkpoint": "models/chicken_body_v1_seed17/best.pt",
+  "classes": [
+    "chicken_skin_lesions",
+    "chicken_head_neuro_signs",
+    "unknown"
+  ],
+  "counts": {
+    "train": {
+      "chicken_skin_lesions": 72,
+      "chicken_head_neuro_signs": 52,
+      "unknown": 132
+    },
+    "val": {
+      "chicken_skin_lesions": 22,
+      "chicken_head_neuro_signs": 12,
+      "unknown": 37
+    }
+  },
+  "new_counts": {
+    "train": {
+      "chicken_head_neuro_signs": 34,
+      "chicken_skin_lesions": 3,
+      "unknown": 3
+    },
+    "val": {
+      "chicken_head_neuro_signs": 8,
+      "chicken_skin_lesions": 4,
+      "unknown": 5
+    }
+  },
+  "new_groups": 18,
+  "excluded": 0,
+  "manifest_sha256": "5a105da58fb2c73fed8c5975ee0ef61ab90a4b5d293679c30a18a83923b198d6",
+  "test_manifest_sha256": "7e0a81ff82de35af67567b881248967df046c73411925bd0a40a417cd08d1aa1",
+  "limitations": "Source labels / visible signs, no independent clinical diagnosis; heuristic grouping cannot prove animal/farm independence."
+}

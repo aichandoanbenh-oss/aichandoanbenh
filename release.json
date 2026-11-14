@@ -1,0 +1,26 @@
+{
+  "version": "2026-11-14-round3-candidate",
+  "species": [
+    "cattle",
+    "pig",
+    "chicken"
+  ],
+  "chicken_inputs": [
+    "fecal",
+    "body"
+  ],
+  "checkpoints": {
+    "models/chicken_cfid_v2_seed17/best.pt": "4b04cd18ad798d36ea9a3b447434910229751fd440f1a0717f29b2ad57b21de8",
+    "models/round3_body_efficientnet_imagenet_seed17/best.pt": "ff59022d2f9e8e6348ffcf2dfc25408f2a740a0b6a3c2b1f6a75fe7bcaa0f088",
+    "models/round3_cattle_current_seed42/best.pt": "6de638bf7b4514b855e8366b8cefd4a95a1040b0d39ae97fd15af4dcda7dd776",
+    "models/round3_pig_current_seed17/best.pt": "edce5b41c9cedcd94b31e2344624e42d3281e5dee8f5984ab6b3eeb06c59f4c8"
+  },
+  "apk_regression_reference": {
+    "external_70_correct": 53,
+    "external_70_total": 70,
+    "old_81_correct": 64,
+    "old_81_total": 81
+  },
+  "clinical_accuracy_established": false,
+  "note": "APK reference results are not claimed as Render web accuracy."
+}

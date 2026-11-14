@@ -1,0 +1,42 @@
+{
+  "branch": "cattle",
+  "initial_checkpoint": "models/cattle_user_update_v2/best.pt",
+  "classes": [
+    "foot_and_mouth",
+    "healthy",
+    "lumpy_skin",
+    "mastitis",
+    "unknown"
+  ],
+  "counts": {
+    "train": {
+      "foot_and_mouth": 501,
+      "healthy": 917,
+      "lumpy_skin": 960,
+      "mastitis": 124,
+      "unknown": 257
+    },
+    "val": {
+      "foot_and_mouth": 109,
+      "healthy": 194,
+      "lumpy_skin": 207,
+      "mastitis": 27,
+      "unknown": 58
+    }
+  },
+  "new_counts": {
+    "train": {
+      "foot_and_mouth": 41,
+      "lumpy_skin": 38
+    },
+    "val": {
+      "foot_and_mouth": 10,
+      "lumpy_skin": 10
+    }
+  },
+  "new_groups": 99,
+  "excluded": 36,
+  "manifest_sha256": "f8bc2c9b705cd2fbac81c6c91c903540c7a87ef4ade155f5f81ebcb9b6458182",
+  "test_manifest_sha256": "7e0a81ff82de35af67567b881248967df046c73411925bd0a40a417cd08d1aa1",
+  "limitations": "Source labels / visible signs, no independent clinical diagnosis; heuristic grouping cannot prove animal/farm independence."
+}

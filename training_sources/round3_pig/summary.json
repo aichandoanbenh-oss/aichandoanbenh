@@ -1,0 +1,37 @@
+{
+  "branch": "pig",
+  "initial_checkpoint": "models/pig_repair_v4_efficientnet_b0/best.pt",
+  "classes": [
+    "Erysipelas",
+    "Greasy_Pig_Disease",
+    "Sarcoptic_Mange",
+    "unknown"
+  ],
+  "counts": {
+    "train": {
+      "Erysipelas": 22,
+      "Greasy_Pig_Disease": 18,
+      "Sarcoptic_Mange": 11,
+      "unknown": 308
+    },
+    "val": {
+      "Erysipelas": 4,
+      "Greasy_Pig_Disease": 3,
+      "Sarcoptic_Mange": 2,
+      "unknown": 74
+    }
+  },
+  "new_counts": {
+    "train": {
+      "unknown": 47
+    },
+    "val": {
+      "unknown": 16
+    }
+  },
+  "new_groups": 8,
+  "excluded": 1,
+  "manifest_sha256": "45b3dc17fc087869cabc62dfbcc06653d3aef793aa9918f707d917063ea3996f",
+  "test_manifest_sha256": "7e0a81ff82de35af67567b881248967df046c73411925bd0a40a417cd08d1aa1",
+  "limitations": "Source labels / visible signs, no independent clinical diagnosis; heuristic grouping cannot prove animal/farm independence."
+}

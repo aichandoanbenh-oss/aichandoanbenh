@@ -1,38 +1,16 @@
 {
   "purpose": "experimental_demo_not_clinical_diagnosis",
-  "dog": {
-    "checkpoint": "models/dog_experimental_resnet18/best.pt",
-    "input": "dog_skin_photo",
-    "labels_vi": {
-      "Dermatitis": "Viêm da (nhóm nhãn rộng)",
-      "Fungal_infections": "Nhiễm nấm (nhãn dataset)",
-      "Healthy": "Đối chứng bình thường theo dataset",
-      "Hypersensitivity": "Quá mẫn/dị ứng (nhãn dataset)",
-      "demodicosis": "Ghẻ Demodex",
-      "ringworm": "Nấm da dermatophyte (ringworm)"
-    },
-    "web_checkpoint": "models/dog_web_experimental_resnet18/best.pt",
-    "web_labels_vi": {
-      "Dermatitis": "Viêm da (nhóm nhãn rộng)",
-      "Fungal_infections": "Nhiễm nấm (nhãn dataset)",
-      "Healthy": "Đối chứng bình thường theo dataset",
-      "Hypersensitivity": "Quá mẫn/dị ứng (nhãn dataset)",
-      "demodicosis": "Ghẻ Demodex",
-      "ringworm": "Nấm da dermatophyte (ringworm)",
-      "unknown": "Ngoài phạm vi / chưa nhận diện được",
-      "oral_signs_unverified": "Dấu hiệu miệng/nước dãi cần đánh giá"
-    }
-  },
   "cattle": {
-    "checkpoint": "models/cattle_experimental_resnet18/best.pt",
+    "checkpoint": "models/round3_cattle_current_seed42/best.pt",
+    "web_checkpoint": "models/round3_cattle_current_seed42/best.pt",
     "input": "cattle_photo_of_affected_area",
     "labels_vi": {
       "foot_and_mouth": "Lở mồm long móng",
       "healthy": "Đối chứng bình thường theo dataset",
       "lumpy_skin": "Viêm da nổi cục",
-      "mastitis": "Viêm vú"
+      "mastitis": "Viêm vú",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
     },
-    "web_checkpoint": "models/cattle_user_update_v2/best.pt",
     "web_labels_vi": {
       "foot_and_mouth": "Lở mồm long móng",
       "healthy": "Đối chứng bình thường theo dataset",
@@ -40,18 +18,37 @@
       "mastitis": "Viêm vú",
       "unknown": "Ngoài phạm vi / chưa nhận diện được"
     },
-    "user_training_update_report": "reports/user_training_update_v2/cattle.json"
+    "input_hint": "Bò: chụp rõ vùng da, miệng, chân hoặc bầu vú bất thường."
+  },
+  "pig": {
+    "checkpoint": "models/round3_pig_current_seed17/best.pt",
+    "web_checkpoint": "models/round3_pig_current_seed17/best.pt",
+    "input": "pig_skin_photo_of_affected_area",
+    "labels_vi": {
+      "Erysipelas": "Bệnh đóng dấu lợn",
+      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
+      "Sarcoptic_Mange": "Ghẻ Sarcoptes",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "web_labels_vi": {
+      "Erysipelas": "Bệnh đóng dấu lợn",
+      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
+      "Sarcoptic_Mange": "Ghẻ Sarcoptes",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "input_hint": "Lợn: ảnh vùng da bất thường; mô hình thử nghiệm còn ít dữ liệu bệnh."
   },
   "chicken": {
-    "checkpoint": "models/chicken_experimental_resnet18/best.pt",
+    "checkpoint": "models/chicken_cfid_v2_seed17/best.pt",
+    "web_checkpoint": "models/chicken_cfid_v2_seed17/best.pt",
     "input": "chicken_fecal_photo",
     "labels_vi": {
       "Coccidiosis": "Cầu trùng",
       "Healthy": "Đối chứng bình thường theo dataset",
       "New Castle Disease": "Newcastle",
-      "Salmonella": "Salmonella (chưa xác định serovar)"
+      "Salmonella": "Salmonella (chưa xác định serovar)",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
     },
-    "web_checkpoint": "models/chicken_user_update_v1/best.pt",
     "web_labels_vi": {
       "Coccidiosis": "Cầu trùng",
       "Healthy": "Đối chứng bình thường theo dataset",
@@ -59,26 +56,12 @@
       "Salmonella": "Salmonella (chưa xác định serovar)",
       "unknown": "Ngoài phạm vi / chưa nhận diện được"
     },
-    "user_training_update_report": "reports/user_training_update_v1/chicken.json"
-  },
-  "pig": {
-    "checkpoint": "models/pig_experimental_resnet18/best.pt",
-    "status": "experimental_small_dataset",
-    "input": "pig_skin_photo_of_affected_area",
-    "labels_vi": {
-      "Erysipelas": "Bệnh đóng dấu lợn",
-      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
-      "Sarcoptic_Mange": "Ghẻ Sarcoptes"
-    },
-    "has_healthy_class": false,
-    "limitations": "66 images after cleaning; only 12 test images; inherited labels; no external Vietnamese validation or unrelated-image rejection",
-    "web_checkpoint": "models/pig_repair_v4_efficientnet_b0/best.pt",
-    "web_labels_vi": {
-      "Erysipelas": "Bệnh đóng dấu lợn",
-      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
-      "Sarcoptic_Mange": "Ghẻ Sarcoptes",
+    "body_checkpoint": "models/round3_body_efficientnet_imagenet_seed17/best.pt",
+    "body_labels_vi": {
+      "chicken_skin_lesions": "Tổn thương da/đóng vảy vùng đầu cần khám",
+      "chicken_head_neuro_signs": "Dấu hiệu vùng đầu, mắt hoặc tư thế bất thường",
       "unknown": "Ngoài phạm vi / chưa nhận diện được"
     },
-    "repair_audit": "reports/final_repair_audit.json"
+    "input_hint": "Gà: chọn đúng ảnh phân hoặc ảnh toàn thân/vùng bệnh. Nhánh toàn thân chỉ phân nhóm dấu hiệu, không xác nhận tác nhân."
   }
 }

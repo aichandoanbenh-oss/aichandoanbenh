@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "actual_model_results": [
+    {
+      "species": "cattle",
+      "input_type": "fecal",
+      "model_id": "round3_cattle_current_seed42",
+      "label": "foot_and_mouth"
+    },
+    {
+      "species": "pig",
+      "input_type": "fecal",
+      "model_id": "round3_pig_current_seed17",
+      "label": "Greasy_Pig_Disease"
+    },
+    {
+      "species": "chicken",
+      "input_type": "fecal",
+      "model_id": "chicken_cfid_v2_seed17",
+      "label": "Coccidiosis"
+    },
+    {
+      "species": "chicken",
+      "input_type": "body",
+      "model_id": "round3_body_efficientnet_imagenet_seed17",
+      "label": "chicken_skin_lesions"
+    }
+  ],
+  "species": [
+    {
+      "id": "cattle",
+      "name": "Bò",
+      "hint": "Bò: chụp rõ vùng da, miệng, chân hoặc bầu vú bất thường.",
+      "classes": [
+        "Lở mồm long móng",
+        "Đối chứng bình thường theo dataset",
+        "Viêm da nổi cục",
+        "Viêm vú",
+        "Ngoài phạm vi / chưa nhận diện được"
+      ],
+      "available": true,
+      "body_available": false
+    },
+    {
+      "id": "pig",
+      "name": "Lợn",
+      "hint": "Lợn: ảnh vùng da bất thường; mô hình thử nghiệm còn ít dữ liệu bệnh.",
+      "classes": [
+        "Bệnh đóng dấu lợn",
+        "Viêm da tiết dịch ở lợn",
+        "Ghẻ Sarcoptes",
+        "Ngoài phạm vi / chưa nhận diện được"
+      ],
+      "available": true,
+      "body_available": false
+    },
+    {
+      "id": "chicken",
+      "name": "Gà",
+      "hint": "Gà: chọn đúng ảnh phân hoặc ảnh toàn thân/vùng bệnh. Nhánh toàn thân chỉ phân nhóm dấu hiệu, không xác nhận tác nhân.",
+      "classes": [
+        "Cầu trùng",
+        "Đối chứng bình thường theo dataset",
+        "Newcastle",
+        "Salmonella (chưa xác định serovar)",
+        "Ngoài phạm vi / chưa nhận diện được"
+      ],
+      "available": true,
+      "body_available": true
+    }
+  ],
+  "browser_passed": true,
+  "checkpoints_hash_verified": true,
+  "state_isolated": true
+}

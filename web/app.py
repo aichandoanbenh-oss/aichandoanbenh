@@ -17,12 +17,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from web.knowledge import information, reply
 from web.model_factory import from_checkpoint
-from web.rabies import Screening, assess, QUESTIONS
 
 ROOT=Path(__file__).resolve().parents[1]
 STATE=Path(os.environ.get('VETLENS_STATE_DIR',str(ROOT/'data/web'))); STATE.mkdir(parents=True,exist_ok=True)
 CATALOG=json.loads((ROOT/'models_catalog.json').read_text(encoding='utf-8'))
-DEFAULT_NAMES={'dog':'Chó','cattle':'Bò','chicken':'Gà','pig':'Lợn'}
+DEFAULT_NAMES={'cattle':'Bò','chicken':'Gà','pig':'Lợn'}
 SPECIES={s:entry.get('display_name',DEFAULT_NAMES.get(s,s)) for s,entry in CATALOG.items() if isinstance(entry,dict) and 'checkpoint' in entry}
 app=FastAPI(title='VetLens · Nhận diện ảnh động vật')
 app.mount('/static',StaticFiles(directory=ROOT/'web/static'),name='static')
@@ -73,7 +72,8 @@ def health(): return {'status':'ok'}
 
 @app.get('/api/models')
 def catalog():
-    return [{ 'id':s,'name':name,'hint':CATALOG[s].get('input_hint',''),'classes':list(CATALOG[s].get('web_labels_vi',CATALOG[s]['labels_vi']).values()),'available':(ROOT/CATALOG[s].get('web_checkpoint',CATALOG[s]['checkpoint'])).exists()} for s,name in SPECIES.items()]
+    return [{ 'id':s,'name':name,'hint':CATALOG[s].get('input_hint',''),'classes':list(CATALOG[s].get('web_labels_vi',CATALOG[s]['labels_vi']).values()),'available':(ROOT/CATALOG[s].get('web_checkpoint',CATALOG[s]['checkpoint'])).exists(),
+              'body_available':bool(CATALOG[s].get('body_checkpoint')) and (ROOT/CATALOG[s]['body_checkpoint']).exists()} for s,name in SPECIES.items()]
 
 @app.get('/api/chats')
 def chats(request:Request):
@@ -95,7 +95,7 @@ def stored_result(raw):
     if not raw:return None
     result=json.loads(raw)
     if result.get('kind')!='rabies_screening' and result.get('label'):
-        result['info']=information(result['label'])
+        result['info']=information(result['label'],input_type=result.get('input_type'))
     return result
 
 @app.delete('/api/chats/{chat}')
@@ -112,27 +112,36 @@ def saved_image(mid:int,request:Request):
         if not r or not r['image']: raise HTTPException(404)
         return Response(r['image'],media_type='image/jpeg',headers={'Cache-Control':'private, no-store'})
 
-def predict(species,im):
+def predict(species,im,input_type='fecal'):
+    if input_type not in {'fecal','body'} or (species!='chicken' and input_type=='body'):
+        raise HTTPException(400,'Loại ảnh không hợp lệ cho loài đã chọn.')
+    body=species=='chicken' and input_type=='body'
+    entry=CATALOG[species]
+    checkpoint=entry.get('body_checkpoint') if body else entry.get('web_checkpoint',entry['checkpoint'])
+    if not checkpoint:
+        raise HTTPException(503,'Nhánh ảnh toàn thân/vùng bệnh của gà chưa có mô hình đã kiểm tra.')
+    key=(species,input_type)
     with LOCK:
-        if species not in MODELS:
-            p=ROOT/CATALOG[species].get('web_checkpoint',CATALOG[species]['checkpoint'])
+        if key not in MODELS:
+            p=ROOT/checkpoint
             if not p.exists(): raise HTTPException(503,'Chưa có trọng số cho loài này.')
             ck=torch.load(p,map_location='cpu',weights_only=True)
             model=from_checkpoint(ck)
             tf=transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize(ck['mean'],ck['std'])])
-            MODELS[species]=(model,tf,ck['classes'])
-        model,tf,classes=MODELS[species]
+            MODELS[key]=(model,tf,ck['classes'])
+        model,tf,classes=MODELS[key]
         with torch.inference_mode(): scores=model(tf(im).unsqueeze(0)).softmax(1)[0].tolist()
     ranked=sorted(zip(classes,scores),key=lambda a:a[1],reverse=True)
-    label=ranked[0][0]; names=CATALOG[species].get('web_labels_vi',CATALOG[species]['labels_vi'])
+    label=ranked[0][0]; names=entry['body_labels_vi'] if body else entry.get('web_labels_vi',entry['labels_vi'])
     warning='Gợi ý thử nghiệm, chưa xác nhận bệnh. Lớp unknown chỉ học một số ảnh ngoài phạm vi, không bảo đảm phát hiện mọi ảnh lạ.'
     if label=='unknown':warning='Ảnh được phân vào unknown: không hiển thị gợi ý bệnh. Kết quả này không chứng minh con vật khỏe mạnh.'
     elif label=='oral_signs_unverified':warning='Dấu hiệu miệng/nước dãi cần đánh giá; không xác nhận hoặc loại trừ dại. Chỉ 6 ảnh nguồn, chưa đủ đánh giá khả năng tổng quát.'
-    if species=='dog':warning+=' Nhánh dấu hiệu miệng đã bỏ sót 1/1 ảnh kiểm thử; không dùng kết quả âm tính để loại trừ dại.'
-    return {'species':species,'label':label,'name':names[label],'warning':warning,'scores':[{'label':c,'name':names[c],'score':p} for c,p in ranked], 'info':information(label)}
+    if body:
+        warning+=' Nhánh ảnh toàn thân/vùng bệnh chỉ gợi ý nhóm dấu hiệu bên ngoài, không xác định tác nhân hay xác nhận bệnh Newcastle/đậu gà.'
+    return {'species':species,'input_type':input_type,'model_id':Path(checkpoint).parent.name,'label':label,'name':names[label],'warning':warning,'scores':[{'label':c,'name':names[c],'score':p} for c,p in ranked], 'info':information(label,input_type=input_type if body else None)}
 
 @app.post('/api/chats/{chat}/predict')
-def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),file:UploadFile=File(...)):
+def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),file:UploadFile=File(...),input_type:str=Form('fecal')):
     with db() as con: owned(con,chat,request.state.owner)
     if species not in SPECIES: raise HTTPException(400,'Loài không hợp lệ.')
     if len(note)>2000: raise HTTPException(400,'Mô tả tối đa 2.000 ký tự.')
@@ -147,7 +156,7 @@ def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),fil
                 im=ImageOps.exif_transpose(source).convert('RGB'); im.load()
     except (UnidentifiedImageError,OSError,ValueError,Image.DecompressionBombError,Image.DecompressionBombWarning) as e:
         raise HTTPException(400,'Ảnh không hợp lệ hoặc vượt giới hạn kích thước.') from e
-    result=predict(species,im)
+    result=predict(species,im,input_type)
     preview=im.copy(); preview.thumbnail((1200,1200)); output=io.BytesIO(); preview.save(output,format='JPEG',quality=85)
     with db() as con:
         owned(con,chat,request.state.owner)
@@ -158,20 +167,6 @@ def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),fil
 
 class Question(BaseModel):
     text:str=Field(min_length=1,max_length=2000)
-
-@app.get('/api/rabies/questions')
-def rabies_questions(): return QUESTIONS
-
-@app.post('/api/chats/{chat}/rabies')
-def rabies_screen(chat:str,answers:Screening,request:Request):
-    result=assess(answers)
-    names={'yes':'Có','no':'Không','unknown':'Không rõ'}
-    with db() as con:
-        owned(con,chat,request.state.owner)
-        add(con,chat,'user','Sàng lọc nguy cơ bệnh dại ở chó\n\n'+'\n'.join(f'{QUESTIONS[k]} — {names[v]}' for k,v in answers.model_dump().items()))
-        add(con,chat,'assistant','Sàng lọc nguy cơ bệnh dại',result=result)
-        con.execute("UPDATE chats SET title=? WHERE id=? AND title='Hội thoại mới'",('Chó · Sàng lọc nguy cơ dại',chat))
-    return result
 
 @app.post('/api/chats/{chat}/message')
 def chat_message(chat:str,question:Question,request:Request):
