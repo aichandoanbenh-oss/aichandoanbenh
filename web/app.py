@@ -8,15 +8,13 @@ import warnings
 from pathlib import Path
 from contextlib import contextmanager
 
-import torch
 from PIL import Image, ImageOps, UnidentifiedImageError
-from torchvision import models, transforms
 from fastapi import FastAPI, Request, Response, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from web.knowledge import information, reply
-from web.model_factory import from_checkpoint
+from web.inference import infer, release_memory
 
 ROOT=Path(__file__).resolve().parents[1]
 STATE=Path(os.environ.get('VETLENS_STATE_DIR',str(ROOT/'data/web'))); STATE.mkdir(parents=True,exist_ok=True)
@@ -25,8 +23,7 @@ DEFAULT_NAMES={'cattle':'Bò','chicken':'Gà','pig':'Lợn'}
 SPECIES={s:entry.get('display_name',DEFAULT_NAMES.get(s,s)) for s,entry in CATALOG.items() if isinstance(entry,dict) and 'checkpoint' in entry}
 app=FastAPI(title='VetLens · Nhận diện ảnh động vật')
 app.mount('/static',StaticFiles(directory=ROOT/'web/static'),name='static')
-torch.set_num_threads(4)
-MODELS={}; LOCK=threading.Lock()
+PROCESSING=threading.Lock()
 
 @contextmanager
 def db():
@@ -89,7 +86,7 @@ def create(request:Request):
 def messages(chat:str,request:Request):
     with db() as con:
         owned(con,chat,request.state.owner)
-        return [{'id':r['id'],'role':r['role'],'content':r['content'],'result':stored_result(r['result']),'image':f"/api/images/{r['id']}" if r['image'] else None} for r in con.execute('SELECT * FROM messages WHERE chat=? ORDER BY id',(chat,))]
+        return [{'id':r['id'],'role':r['role'],'content':r['content'],'result':stored_result(r['result']),'image':f"/api/images/{r['id']}" if r['image'] else None} for r in con.execute('SELECT id,role,content,result,(image IS NOT NULL) AS image FROM messages WHERE chat=? ORDER BY id',(chat,))]
 
 def stored_result(raw):
     if not raw:return None
@@ -120,17 +117,7 @@ def predict(species,im,input_type='fecal'):
     checkpoint=entry.get('body_checkpoint') if body else entry.get('web_checkpoint',entry['checkpoint'])
     if not checkpoint:
         raise HTTPException(503,'Nhánh ảnh toàn thân/vùng bệnh của gà chưa có mô hình đã kiểm tra.')
-    key=(species,input_type)
-    with LOCK:
-        if key not in MODELS:
-            p=ROOT/checkpoint
-            if not p.exists(): raise HTTPException(503,'Chưa có trọng số cho loài này.')
-            ck=torch.load(p,map_location='cpu',weights_only=True)
-            model=from_checkpoint(ck)
-            tf=transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize(ck['mean'],ck['std'])])
-            MODELS[key]=(model,tf,ck['classes'])
-        model,tf,classes=MODELS[key]
-        with torch.inference_mode(): scores=model(tf(im).unsqueeze(0)).softmax(1)[0].tolist()
+    classes,scores=infer(species,input_type,im)
     ranked=sorted(zip(classes,scores),key=lambda a:a[1],reverse=True)
     label=ranked[0][0]; names=entry['body_labels_vi'] if body else entry.get('web_labels_vi',entry['labels_vi'])
     warning='Gợi ý thử nghiệm, chưa xác nhận bệnh. Lớp unknown chỉ học một số ảnh ngoài phạm vi, không bảo đảm phát hiện mọi ảnh lạ.'
@@ -142,6 +129,17 @@ def predict(species,im,input_type='fecal'):
 
 @app.post('/api/chats/{chat}/predict')
 def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),file:UploadFile=File(...),input_type:str=Form('fecal')):
+    if not PROCESSING.acquire(blocking=False):
+        raise HTTPException(503,'Máy chủ đang phân tích ảnh khác. Vui lòng thử lại sau vài giây.',headers={'Retry-After':'5'})
+    try:
+        return analyze_image(chat,request,species,note,file,input_type)
+    finally:
+        try:
+            release_memory()
+        finally:
+            PROCESSING.release()
+
+def analyze_image(chat,request,species,note,file,input_type):
     with db() as con: owned(con,chat,request.state.owner)
     if species not in SPECIES: raise HTTPException(400,'Loài không hợp lệ.')
     if len(note)>2000: raise HTTPException(400,'Mô tả tối đa 2.000 ký tự.')
@@ -157,7 +155,7 @@ def analyze(chat:str,request:Request,species:str=Form(...),note:str=Form(''),fil
     except (UnidentifiedImageError,OSError,ValueError,Image.DecompressionBombError,Image.DecompressionBombWarning) as e:
         raise HTTPException(400,'Ảnh không hợp lệ hoặc vượt giới hạn kích thước.') from e
     result=predict(species,im,input_type)
-    preview=im.copy(); preview.thumbnail((1200,1200)); output=io.BytesIO(); preview.save(output,format='JPEG',quality=85)
+    im.thumbnail((1200,1200)); output=io.BytesIO(); im.save(output,format='JPEG',quality=85); im.close()
     with db() as con:
         owned(con,chat,request.state.owner)
         add(con,chat,'user',f'Ảnh {SPECIES[species].lower()}'+(f' · {note}' if note else ''),image=output.getvalue())

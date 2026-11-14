@@ -1,0 +1,287 @@
+{
+  "cattle": {
+    "classes": [
+      "foot_and_mouth",
+      "healthy",
+      "lumpy_skin",
+      "mastitis",
+      "unknown"
+    ],
+    "names": {
+      "foot_and_mouth": "Lở mồm long móng",
+      "healthy": "Đối chứng bình thường theo dataset",
+      "lumpy_skin": "Viêm da nổi cục",
+      "mastitis": "Viêm vú",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "info": {
+      "foot_and_mouth": {
+        "signs": "Sốt, chảy nhiều nước dãi, mụn nước hoặc loét miệng, tổn thương chân và đi khập khiễng.",
+        "causes": "Virus lở mồm long móng; nhiều nguyên nhân khác cũng gây loét và đi khập khiễng.",
+        "care": "Nếu nghi ngờ, cách ly, hạn chế vận chuyển và liên hệ thú y địa phương ngay. Chăm sóc hỗ trợ và kiểm soát ổ dịch theo hướng dẫn thú y.",
+        "treatment": "Báo thú y địa phương ngay để khám, lấy mẫu và tổ chức kiểm soát dịch. Không có thuốc tự dùng từ ảnh để loại bỏ virus. Chăm sóc hỗ trợ gồm nước sạch, thức ăn mềm dễ ăn và xử lý tổn thương theo thú y; thuốc giảm đau hoặc điều trị bội nhiễm chỉ dùng khi được chỉ định.",
+        "prevention": "Tiêm phòng theo chương trình địa phương; kiểm soát con giống và cách ly đàn mới nhập theo thú y. Tách dụng cụ, hạn chế người/xe vào khu bệnh, làm sạch chất hữu cơ trước khi khử trùng. Không bán chạy hay vận chuyển con nghi bệnh.",
+        "urgent": "Nghi lở mồm long móng cần báo ngay, đặc biệt khi nhiều con chảy dãi, loét miệng và khập khiễng. Con non yếu đột ngột, khó thở hoặc không uống được cần trợ giúp khẩn.",
+        "monitoring": "Ghi số con có triệu chứng, ngày khởi phát, lịch vaccine, nhập đàn và vận chuyển gần đây. Theo dõi uống nước, khả năng đứng/đi; không tự chọc vỡ mụn nước để kiểm tra.",
+        "medications": "Không có thuốc đặc hiệu để tự chữa virus lở mồm long móng. Thú y chỉ định chăm sóc hỗ trợ, giảm đau và điều trị nhiễm khuẩn thứ phát nếu có. Kháng sinh không diệt virus; vaccine dùng phòng bệnh, không phải thuốc chữa con đang bệnh."
+      },
+      "healthy": {
+        "signs": "Ảnh gần với nhóm đối chứng trong dữ liệu huấn luyện.",
+        "causes": "Kết quả này không loại trừ bệnh và không xác nhận con vật khỏe mạnh.",
+        "care": "Theo dõi ăn uống, thân nhiệt và thời điểm xuất hiện triệu chứng; chụp rõ vùng tổn thương và liên hệ thú y để khám, lấy mẫu khi cần. Không tự chọn kháng sinh hoặc liều thuốc từ kết quả ảnh.",
+        "treatment": "Không dùng thuốc chỉ vì đã gửi ảnh. Nếu con vật có triệu chứng, cần khám dù nhãn ảnh là khỏe mạnh; ảnh không đánh giá được bệnh bên trong hoặc giai đoạn sớm.",
+        "prevention": "Duy trì khẩu phần phù hợp, nước sạch, vệ sinh và tiêm phòng/kiểm soát ký sinh trùng theo loài và thú y địa phương. Kiểm soát con mới nhập đàn.",
+        "urgent": "Bỏ ăn kéo dài, khó thở, yếu nhanh, co giật hoặc đàn chết bất thường cần khám, không chờ kết quả ảnh thay đổi.",
+        "monitoring": "Theo dõi ăn uống, vận động, phân, tăng trưởng hoặc sản lượng. Ghi thay đổi so với bình thường và khám định kỳ theo nhu cầu đàn.",
+        "medications": "Không có chỉ định dùng thuốc từ nhãn đối chứng bình thường. Nếu con vật vẫn có triệu chứng, cần khám; không tự dùng kháng sinh hoặc thuốc phòng chỉ vì đã phân tích ảnh."
+      },
+      "lumpy_skin": {
+        "signs": "Các nốt sần trên da, sốt, giảm ăn hoặc giảm sữa; có thể sưng hạch.",
+        "causes": "Virus gây viêm da nổi cục ở trâu bò, thường truyền qua côn trùng hút máu.",
+        "care": "Cách ly con nghi bệnh, kiểm soát côn trùng và liên hệ thú y. Không có thuốc đặc hiệu để tự điều trị từ ảnh; phòng bệnh bằng vaccine theo hướng dẫn địa phương.",
+        "treatment": "Liên hệ thú y để xác nhận và quản lý ổ dịch. Điều trị chủ yếu hỗ trợ ăn uống, giảm đau và chăm sóc tổn thương; kháng sinh chỉ dùng khi thú y đánh giá có nhiễm khuẩn thứ phát. Không tự chích, nặn hay cắt các nốt da.",
+        "prevention": "Tiêm vaccine theo hướng dẫn thú y địa phương, kiểm soát côn trùng hút máu và nước đọng. Không dùng chung kim tiêm, làm sạch dụng cụ, kiểm soát nhập đàn và hạn chế di chuyển con nghi bệnh.",
+        "urgent": "Báo thú y khi xuất hiện nhiều nốt da kèm sốt hoặc lan trong đàn. Khó thở, sưng nhiều, không đứng được hoặc không uống cần xử trí khẩn.",
+        "monitoring": "Ghi thời điểm xuất hiện nốt, số con bệnh, lượng ăn/uống và sữa. Theo dõi vết loét, ruồi bâu, dịch tiết; xác nhận bằng thăm khám và xét nghiệm theo thú y.",
+        "medications": "Không có thuốc đặc hiệu để tự chữa virus viêm da nổi cục. Thú y cân nhắc chăm sóc hỗ trợ, giảm đau và kháng sinh chỉ khi có nhiễm khuẩn thứ phát. Không tự tiêm phối hợp nhiều thuốc; vaccine là biện pháp phòng bệnh theo chương trình kiểm soát dịch."
+      },
+      "mastitis": {
+        "signs": "Bầu vú nóng, sưng, đau; sữa có cặn hoặc thay đổi màu, đôi khi sốt.",
+        "causes": "Viêm tuyến vú thường liên quan nhiễm khuẩn; ảnh không xác định được tác nhân.",
+        "care": "Giữ vệ sinh vắt sữa, tách sữa bất thường; thú y kiểm tra sữa và chọn điều trị, thời gian ngừng sử dụng sữa theo thuốc.",
+        "treatment": "Thú y kiểm tra bầu vú, sữa và có thể lấy mẫu trước điều trị nếu không làm chậm cấp cứu. Điều trị tùy mức nặng và tác nhân, có thể gồm dịch, giảm đau và kháng sinh phù hợp. Không tự bơm thuốc vào núm vú; tuân thủ thời gian ngừng khai thác sữa/thịt của thuốc.",
+        "prevention": "Giữ nền nằm khô, tay và thiết bị vắt sạch; dùng quy trình vệ sinh núm vú trước/sau vắt phù hợp. Vắt con bệnh sau cùng hoặc bằng dụng cụ riêng. Tách sữa bất thường và sữa đang trong thời gian ngừng thuốc khỏi thực phẩm.",
+        "urgent": "Sốt, bỏ ăn, yếu, mất nước, bầu vú đổi màu hoặc sữa loãng bất thường kèm suy sụp là tình huống khẩn. Đừng chỉ chờ ảnh đánh giá bầu vú.",
+        "monitoring": "Ghi khoang vú bị ảnh hưởng, màu/cặn sữa, lượng sữa và thuốc đã dùng. Viêm vú dưới lâm sàng có thể không thấy trong ảnh; cần thử sữa hoặc kiểm tra tế bào theo chương trình đàn.",
+        "medications": "Thuốc kháng sinh tại vú hoặc toàn thân chỉ được chọn theo tác nhân và mức độ viêm vú; không thể chọn từ ảnh bầu vú. Ca nặng có thể cần truyền dịch và thuốc chống viêm do thú y thực hiện. Không tự bơm thuốc vào núm vú; bắt buộc tuân thủ thời gian ngừng sử dụng sữa và thịt theo sản phẩm."
+      },
+      "unknown": {
+        "signs": "Chưa nhận diện được một bệnh thuộc các lớp đang hỗ trợ. Đây không phải kết luận ảnh không có bệnh.",
+        "causes": "Có thể là bệnh chưa được hỗ trợ, ảnh không phù hợp, loài khác hoặc mô hình nhận diện sai. Nhóm ngoài phạm vi của lợn đã bổ sung một số bệnh da khác, nhưng chưa bao phủ mọi bệnh.",
+        "care": "Kiểm tra đúng loài đã chọn và ảnh rõ vùng cần xem; riêng gà dùng ảnh phân. Nếu con vật có dấu hiệu bất thường, liên hệ thú y dù hệ thống trả unknown. Không chọn thuốc chỉ từ kết quả này.",
+        "treatment": "Chưa có nhãn bệnh phù hợp nên không gợi ý thuốc. Kiểm tra loài và loại ảnh; nếu có triệu chứng, để thú y khám trực tiếp thay vì thử điều trị theo điểm mô hình.",
+        "prevention": "Duy trì vệ sinh, thức ăn/nước sạch và lịch phòng bệnh phù hợp loài. Không dùng kết quả unknown để quyết định bỏ tiêm phòng hoặc nhập đàn.",
+        "urgent": "Khó thở, co giật, không đứng được, chảy máu nhiều hoặc nhiều con cùng bệnh cần thú y ngay bất kể kết quả ảnh.",
+        "monitoring": "Ghi triệu chứng thực tế, thời gian khởi phát và con tiếp xúc. Chụp rõ vùng tổn thương nếu an toàn; riêng gà mô hình dùng ảnh phân.",
+        "medications": "Chưa nhận diện được bệnh thuộc lớp hỗ trợ nên không đưa ra thuốc điều trị. Cần khám trực tiếp nếu con vật có triệu chứng; không thử các thuốc của những bệnh xuất hiện ở kết quả khác."
+      }
+    },
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "model_sha256": "98dce13fa8ccf7547f7c41470c85decef952f91b840d86d80b159691acb92c5f",
+    "architecture": "resnet18",
+    "input_type": "fecal"
+  },
+  "pig": {
+    "classes": [
+      "Erysipelas",
+      "Greasy_Pig_Disease",
+      "Sarcoptic_Mange",
+      "unknown"
+    ],
+    "names": {
+      "Erysipelas": "Bệnh đóng dấu lợn",
+      "Greasy_Pig_Disease": "Viêm da tiết dịch ở lợn",
+      "Sarcoptic_Mange": "Ghẻ Sarcoptes",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "info": {
+      "Erysipelas": {
+        "signs": "Sốt, bỏ ăn, các mảng da đỏ tím có thể dạng hình thoi; thể mạn có thể viêm khớp.",
+        "causes": "Vi khuẩn Erysipelothrix rhusiopathiae; tổn thương ngoài da có thể giống bệnh khác.",
+        "care": "Cách ly lợn nghi bệnh, đeo găng khi tiếp xúc vùng tổn thương; gọi thú y sớm để xác nhận và kê điều trị thích hợp.",
+        "treatment": "Thú y cần khám sớm, phân biệt với các bệnh gây sốt/xuất huyết khác và chỉ định kháng sinh thích hợp khi xác nhận hoặc có chỉ định lâm sàng. Hỗ trợ nước, nghỉ ngơi và giảm đau theo thú y; tổn thương khớp hoặc tim mạn cần đánh giá riêng. Tuân thủ thời gian ngừng thuốc trước xuất bán.",
+        "prevention": "Tiêm phòng theo chương trình đàn, kiểm soát nhập đàn và vệ sinh chuồng/dụng cụ. Đeo găng, che vết thương khi chăm sóc vì tác nhân có thể lây sang người qua da tổn thương. Không chuyển con bệnh sang đàn khác.",
+        "urgent": "Sốt, bỏ ăn, da tím, khó thở, đi lại đau hoặc chết đột ngột cần thú y ngay. Không khẳng định bệnh đóng dấu chỉ vì thấy mảng da hình thoi.",
+        "monitoring": "Ghi diễn biến tổn thương, số con bệnh, lịch vaccine và thuốc đã dùng. Theo dõi uống nước, đi lại và ăn uống; lấy mẫu trước kháng sinh nếu thú y thấy phù hợp và không trì hoãn điều trị.",
+        "medications": "Khi thú y xác nhận hoặc có đủ chỉ định lâm sàng cho bệnh đóng dấu lợn, penicillin là một lựa chọn kháng sinh thường được cân nhắc. Thuốc, đường dùng, thời gian điều trị và ngừng thuốc phải do thú y xác định theo sản phẩm, cân nặng và mức độ bệnh. Không tự tiêm khi chỉ có ảnh da đỏ tím vì có thể là bệnh khác."
+      },
+      "Greasy_Pig_Disease": {
+        "signs": "Da rỉ dịch, nhờn, đóng vảy nâu, thường gặp ở lợn con; ca nặng có thể mất nước.",
+        "causes": "Viêm da tiết dịch thường liên quan Staphylococcus hyicus và vết xước da.",
+        "care": "Giữ chuồng khô, giảm xây xát và theo dõi bú/ăn. Lợn con yếu hoặc mất nước cần thú y ngay; điều trị phụ thuộc thăm khám và tác nhân.",
+        "treatment": "Thú y đánh giá mất nước và nhiễm trùng, cân nhắc lấy mẫu/kháng sinh đồ để chọn kháng sinh khi cần. Chăm sóc dịch và vệ sinh da bằng sản phẩm phù hợp cho lợn con phải theo hướng dẫn. Không bóc vảy mạnh, bôi chất ăn mòn hoặc tự phối nhiều thuốc.",
+        "prevention": "Giữ ô đẻ sạch, khô; vệ sinh nái và dụng cụ, giảm cạnh sắc và cắn nhau gây trầy da. Theo dõi bú sữa đầu và dinh dưỡng lợn con. Tách nhóm bệnh bằng dụng cụ riêng, vệ sinh giữa các lứa.",
+        "urgent": "Lợn con bỏ bú, yếu, da nhăn, tổn thương lan nhanh hoặc nhiều con cùng bị cần thú y ngay vì có thể mất nước nhanh.",
+        "monitoring": "Kiểm tra bú/ăn, độ hoạt bát và vùng rỉ dịch nhiều lần trong ngày ở lợn con. Ghi tuổi, số con cùng ổ bị bệnh, thuốc và chất sát trùng đã dùng; đánh giá lại sớm nếu xấu đi.",
+        "medications": "Thú y có thể cân nhắc kháng sinh như lincomycin hoặc penicillin nếu tác nhân còn nhạy; Staphylococcus hyicus có thể kháng thuốc nên không có lựa chọn chắc chắn chỉ từ ảnh. Cần đánh giá mất nước, lấy mẫu khi phù hợp, chăm sóc da và tuân thủ thời gian ngừng thuốc. Không tự dùng kháng sinh dự phòng cho cả đàn."
+      },
+      "Sarcoptic_Mange": {
+        "signs": "Ngứa, cọ xát, da dày và đóng vảy, thường thấy ở tai và lan ra thân.",
+        "causes": "Mạt Sarcoptes scabiei var. suis; cần phân biệt với viêm da khác.",
+        "care": "Thú y xác nhận bằng thăm khám/cạo da, hướng dẫn thuốc diệt mạt cho con bệnh và nhóm tiếp xúc; vệ sinh chuồng và dụng cụ.",
+        "treatment": "Thú y xác nhận và lập kế hoạch thuốc diệt mạt cho con bệnh cùng nhóm tiếp xúc khi cần. Thuốc, đường dùng và lịch nhắc phụ thuộc sản phẩm, tuổi và tình trạng đàn; không tự suy liều từ loài khác. Điều trị nhiễm khuẩn thứ phát nếu có chỉ định, tuân thủ thời gian ngừng thuốc.",
+        "prevention": "Kiểm tra và cách ly lợn mới nhập theo quy trình đàn, tránh dùng chung dụng cụ bẩn. Làm sạch ô chuồng và đồ dùng, phối hợp xử lý các nhóm tiếp xúc để giảm tái nhiễm.",
+        "urgent": "Khám sớm khi ngứa dữ dội, trầy loét, có mủ, giảm ăn hoặc chậm lớn rõ. Da đỏ tím kèm sốt cao cần đánh giá nguyên nhân khác, không mặc định là ghẻ.",
+        "monitoring": "Theo dõi cọ xát, tổn thương tai và da, khả năng ăn/tăng trưởng. Tái khám theo lịch; ngứa giảm chưa đủ chứng minh đã kiểm soát hết mạt.",
+        "medications": "Nếu xác nhận ghẻ Sarcoptes ở lợn, thú y có thể cân nhắc ivermectin hoặc doramectin theo sản phẩm được phép dùng. Lịch nhắc điều trị và xử lý đàn tiếp xúc phải theo kế hoạch; kiểm tra thai kỳ, tuổi, cân nặng và thời gian ngừng thuốc trước xuất bán."
+      },
+      "unknown": {
+        "signs": "Chưa nhận diện được một bệnh thuộc các lớp đang hỗ trợ. Đây không phải kết luận ảnh không có bệnh.",
+        "causes": "Có thể là bệnh chưa được hỗ trợ, ảnh không phù hợp, loài khác hoặc mô hình nhận diện sai. Nhóm ngoài phạm vi của lợn đã bổ sung một số bệnh da khác, nhưng chưa bao phủ mọi bệnh.",
+        "care": "Kiểm tra đúng loài đã chọn và ảnh rõ vùng cần xem; riêng gà dùng ảnh phân. Nếu con vật có dấu hiệu bất thường, liên hệ thú y dù hệ thống trả unknown. Không chọn thuốc chỉ từ kết quả này.",
+        "treatment": "Chưa có nhãn bệnh phù hợp nên không gợi ý thuốc. Kiểm tra loài và loại ảnh; nếu có triệu chứng, để thú y khám trực tiếp thay vì thử điều trị theo điểm mô hình.",
+        "prevention": "Duy trì vệ sinh, thức ăn/nước sạch và lịch phòng bệnh phù hợp loài. Không dùng kết quả unknown để quyết định bỏ tiêm phòng hoặc nhập đàn.",
+        "urgent": "Khó thở, co giật, không đứng được, chảy máu nhiều hoặc nhiều con cùng bệnh cần thú y ngay bất kể kết quả ảnh.",
+        "monitoring": "Ghi triệu chứng thực tế, thời gian khởi phát và con tiếp xúc. Chụp rõ vùng tổn thương nếu an toàn; riêng gà mô hình dùng ảnh phân.",
+        "medications": "Chưa nhận diện được bệnh thuộc lớp hỗ trợ nên không đưa ra thuốc điều trị. Cần khám trực tiếp nếu con vật có triệu chứng; không thử các thuốc của những bệnh xuất hiện ở kết quả khác."
+      }
+    },
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "model_sha256": "5080448b440743bf4d30170626b6ec2239c4e7db301baa12f5dc7a42db0f9ef3",
+    "architecture": "efficientnet_b0",
+    "input_type": "fecal"
+  },
+  "chicken": {
+    "classes": [
+      "Coccidiosis",
+      "Healthy",
+      "New Castle Disease",
+      "Salmonella",
+      "unknown"
+    ],
+    "names": {
+      "Coccidiosis": "Cầu trùng",
+      "Healthy": "Đối chứng bình thường theo dataset",
+      "New Castle Disease": "Newcastle",
+      "Salmonella": "Salmonella (chưa xác định serovar)",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "info": {
+      "Coccidiosis": {
+        "signs": "Gà ủ rũ, giảm ăn, tiêu chảy; có thể có phân lẫn máu nhưng không phải ca nào cũng vậy.",
+        "causes": "Đơn bào Eimeria; màu phân đơn thuần không đủ xác định bệnh.",
+        "care": "Giữ chất độn chuồng khô, nước uống sạch; thú y xét nghiệm phân và hướng dẫn thuốc cầu trùng phù hợp.",
+        "treatment": "Thú y đánh giá đàn, xét nghiệm phân và khi cần khám bệnh tích để chọn thuốc cầu trùng. Chăm sóc nước uống và tình trạng mất nước; không trộn nhiều thuốc hoặc tăng liều khi chưa rõ nguyên nhân. Với gà thực phẩm, tuân thủ nhãn thuốc và thời gian ngừng thuốc.",
+        "prevention": "Giữ chất độn khô, sửa máng uống rò rỉ, giảm quá tải và tách nhóm tuổi. Dọn phân và vệ sinh dụng cụ; noãn nang có thể chịu được nhiều chất sát trùng thông thường. Chương trình vaccine hoặc thuốc phòng cần do thú y thiết kế phù hợp đàn.",
+        "urgent": "Phân máu, gà yếu nhanh, bỏ uống hoặc số chết tăng cần thú y trong ngày. Không mặc định mọi phân đỏ đều do cầu trùng.",
+        "monitoring": "Ghi tuổi đàn, số con bệnh/chết, lượng ăn/uống và chương trình phòng cầu trùng. Lấy mẫu phân theo hướng dẫn, đánh giá cả đàn thay vì chỉ màu của một bãi phân.",
+        "medications": "Nếu xác nhận cầu trùng, thú y có thể cân nhắc amprolium hoặc toltrazuril tùy loài/nhóm tuổi, chương trình phòng bệnh và sản phẩm được phép sử dụng. Không tự phối nhiều thuốc cầu trùng. Với gà đẻ, phải kiểm tra sản phẩm có được phép dùng khi trứng làm thực phẩm hay không và thời gian ngừng thuốc."
+      },
+      "Healthy": {
+        "signs": "Ảnh gần với nhóm đối chứng trong dữ liệu huấn luyện.",
+        "causes": "Kết quả này không loại trừ bệnh và không xác nhận con vật khỏe mạnh.",
+        "care": "Theo dõi ăn uống, thân nhiệt và thời điểm xuất hiện triệu chứng; chụp rõ vùng tổn thương và liên hệ thú y để khám, lấy mẫu khi cần. Không tự chọn kháng sinh hoặc liều thuốc từ kết quả ảnh.",
+        "treatment": "Không dùng thuốc chỉ vì đã gửi ảnh. Nếu con vật có triệu chứng, cần khám dù nhãn ảnh là khỏe mạnh; ảnh không đánh giá được bệnh bên trong hoặc giai đoạn sớm.",
+        "prevention": "Duy trì khẩu phần phù hợp, nước sạch, vệ sinh và tiêm phòng/kiểm soát ký sinh trùng theo loài và thú y địa phương. Kiểm soát con mới nhập đàn.",
+        "urgent": "Bỏ ăn kéo dài, khó thở, yếu nhanh, co giật hoặc đàn chết bất thường cần khám, không chờ kết quả ảnh thay đổi.",
+        "monitoring": "Theo dõi ăn uống, vận động, phân, tăng trưởng hoặc sản lượng. Ghi thay đổi so với bình thường và khám định kỳ theo nhu cầu đàn.",
+        "medications": "Không có chỉ định dùng thuốc từ nhãn đối chứng bình thường. Nếu con vật vẫn có triệu chứng, cần khám; không tự dùng kháng sinh hoặc thuốc phòng chỉ vì đã phân tích ảnh."
+      },
+      "New Castle Disease": {
+        "signs": "Có thể có triệu chứng hô hấp, tiêu chảy, giảm đẻ hoặc thần kinh như vẹo cổ.",
+        "causes": "Virus Newcastle; ảnh phân không thể xác nhận nhiễm virus.",
+        "care": "Cách ly đàn nghi bệnh, hạn chế di chuyển và báo thú y. Không tự dùng kháng sinh để chữa virus; kiểm soát dịch và vaccine theo hướng dẫn.",
+        "treatment": "Báo thú y để xét nghiệm, phân biệt với cúm gia cầm và nguyên nhân khác. Không có kháng sinh chữa virus Newcastle; xử trí ổ dịch và chăm sóc hỗ trợ phải theo thú y. Không tự bán, giết mổ hoặc di chuyển đàn nghi nhiễm.",
+        "prevention": "Thực hiện chương trình vaccine đúng tuổi và bảo quản đúng hướng dẫn. Kiểm soát người, dụng cụ và con giống; ngăn tiếp xúc chim hoang, vệ sinh giữa các lứa. Vaccine không thay thế an toàn sinh học.",
+        "urgent": "Gà chết hàng loạt, khó thở, vẹo cổ, liệt hoặc giảm đẻ đột ngột cần báo thú y ngay. Tránh tự mổ khám con chết.",
+        "monitoring": "Ghi diễn biến chết, triệu chứng hô hấp/thần kinh và lịch vaccine. Ảnh phân không phân biệt Newcastle với nhiều bệnh truyền nhiễm khác; cần lấy mẫu đúng quy trình.",
+        "medications": "Không có kháng sinh chữa virus Newcastle. Thuốc hỗ trợ hoặc xử lý bội nhiễm chỉ dùng theo thú y và không thay thế kiểm soát ổ dịch. Không tự dùng vaccine như thuốc chữa gà đang mắc bệnh."
+      },
+      "Salmonella": {
+        "signs": "Có thể tiêu chảy, ủ rũ, chậm lớn; biểu hiện phụ thuộc tuổi và tác nhân.",
+        "causes": "Vi khuẩn Salmonella; nhãn ảnh không xác định serovar, cần xét nghiệm.",
+        "care": "Vệ sinh chuồng, nước và thức ăn; rửa tay sau tiếp xúc. Thú y xét nghiệm và quyết định điều trị, tránh tự dùng kháng sinh.",
+        "treatment": "Cần xác nhận bằng xét nghiệm và đánh giá mục đích đàn, tuổi cùng tác nhân. Kháng sinh nếu dùng phải theo thú y và xét nghiệm phù hợp; điều trị triệu chứng không bảo đảm loại bỏ tình trạng mang trùng. Chăm sóc nước, nhiệt độ chuồng và kiểm soát nguồn lây đi kèm.",
+        "prevention": "Chọn con giống được kiểm soát, bảo vệ thức ăn/nước khỏi phân và chuột. Rửa tay sau tiếp xúc gia cầm, tách giày/dụng cụ chăn nuôi khỏi bếp. Không ăn trứng/thịt sống hoặc chưa chín; không sử dụng sản phẩm từ đàn bệnh trái hướng dẫn thú y.",
+        "urgent": "Gà con tiêu chảy nhiều, mất nước, yếu hoặc số chết tăng cần khám sớm. Người chăm sóc sốt, tiêu chảy sau tiếp xúc cần tư vấn y tế.",
+        "monitoring": "Ghi nguồn giống, tuổi đàn, số bệnh/chết và thuốc đã sử dụng. Theo dõi phân và ăn uống nhưng không dùng phân trở lại bình thường làm bằng chứng sạch mầm bệnh.",
+        "medications": "Không chọn kháng sinh chỉ từ ảnh phân. Nếu thú y chỉ định điều trị, lựa chọn phải dựa vào xét nghiệm, độ nhạy kháng sinh và quy định với gia cầm thực phẩm. Điều trị không bảo đảm loại bỏ mang trùng; cần kiểm soát đàn, nguồn giống và an toàn thực phẩm."
+      },
+      "unknown": {
+        "signs": "Chưa nhận diện được một bệnh thuộc các lớp đang hỗ trợ. Đây không phải kết luận ảnh không có bệnh.",
+        "causes": "Có thể là bệnh chưa được hỗ trợ, ảnh không phù hợp, loài khác hoặc mô hình nhận diện sai. Nhóm ngoài phạm vi của lợn đã bổ sung một số bệnh da khác, nhưng chưa bao phủ mọi bệnh.",
+        "care": "Kiểm tra đúng loài đã chọn và ảnh rõ vùng cần xem; riêng gà dùng ảnh phân. Nếu con vật có dấu hiệu bất thường, liên hệ thú y dù hệ thống trả unknown. Không chọn thuốc chỉ từ kết quả này.",
+        "treatment": "Chưa có nhãn bệnh phù hợp nên không gợi ý thuốc. Kiểm tra loài và loại ảnh; nếu có triệu chứng, để thú y khám trực tiếp thay vì thử điều trị theo điểm mô hình.",
+        "prevention": "Duy trì vệ sinh, thức ăn/nước sạch và lịch phòng bệnh phù hợp loài. Không dùng kết quả unknown để quyết định bỏ tiêm phòng hoặc nhập đàn.",
+        "urgent": "Khó thở, co giật, không đứng được, chảy máu nhiều hoặc nhiều con cùng bệnh cần thú y ngay bất kể kết quả ảnh.",
+        "monitoring": "Ghi triệu chứng thực tế, thời gian khởi phát và con tiếp xúc. Chụp rõ vùng tổn thương nếu an toàn; riêng gà mô hình dùng ảnh phân.",
+        "medications": "Chưa nhận diện được bệnh thuộc lớp hỗ trợ nên không đưa ra thuốc điều trị. Cần khám trực tiếp nếu con vật có triệu chứng; không thử các thuốc của những bệnh xuất hiện ở kết quả khác."
+      }
+    },
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "model_sha256": "f478d2fafe0a580f3f4e2e5ef97d9632f2a15fddbec61d7241e24d38cd42545f",
+    "architecture": "resnet18",
+    "input_type": "fecal"
+  },
+  "chicken_body": {
+    "classes": [
+      "chicken_skin_lesions",
+      "chicken_head_neuro_signs",
+      "unknown"
+    ],
+    "names": {
+      "chicken_skin_lesions": "Tổn thương da/đóng vảy vùng đầu cần khám",
+      "chicken_head_neuro_signs": "Dấu hiệu vùng đầu, mắt hoặc tư thế bất thường",
+      "unknown": "Ngoài phạm vi / chưa nhận diện được"
+    },
+    "info": {
+      "chicken_skin_lesions": {
+        "signs": "Ảnh gần nhóm tổn thương da, nốt sần hoặc đóng vảy vùng đầu/mào.",
+        "causes": "Có thể gặp ở đậu gà, chấn thương, ký sinh trùng hoặc nhiễm trùng khác; hình ảnh không xác định được nguyên nhân.",
+        "care": "Tách con có dấu hiệu bất thường khi có thể, giữ dụng cụ và chuồng sạch, theo dõi ăn uống và liên hệ thú y. Không bóc vảy hay cố mở miệng để chụp ảnh.",
+        "treatment": "Cần khám và xét nghiệm khi phù hợp trước khi chọn điều trị. Mô hình này chỉ phân nhóm dấu hiệu, không đưa chẩn đoán tác nhân hoặc phác đồ từ ảnh.",
+        "prevention": "Vệ sinh chuồng, kiểm soát côn trùng, cách ly con mới và thực hiện lịch vaccine theo hướng dẫn thú y địa phương.",
+        "urgent": "Khó thở, co giật, liệt, không đứng được hoặc nhiều con chết cần liên hệ thú y ngay; hạn chế di chuyển đàn.",
+        "monitoring": "Ghi tuổi gà, số con có dấu hiệu, thời điểm khởi phát, ăn uống, hô hấp và tiền sử vaccine. Ảnh toàn thân và ảnh phân được phân tích bằng hai nhánh riêng.",
+        "medications": "Không chọn kháng sinh, thuốc hay liều dùng chỉ dựa trên nhóm dấu hiệu từ ảnh. Thú y cần xác định nguyên nhân và thời gian ngừng thuốc nếu có."
+      },
+      "chicken_head_neuro_signs": {
+        "signs": "Ảnh gần nhóm bất thường vùng đầu, mắt hoặc tư thế như sưng, đổi màu hay vẹo cổ.",
+        "causes": "Newcastle, bệnh hô hấp, thiếu dinh dưỡng, chấn thương và nhiều nguyên nhân khác có thể có biểu hiện chồng lấn. Không suy ra bệnh Newcastle chỉ từ ảnh.",
+        "care": "Tách con có dấu hiệu bất thường khi có thể, giữ dụng cụ và chuồng sạch, theo dõi ăn uống và liên hệ thú y. Không bóc vảy hay cố mở miệng để chụp ảnh.",
+        "treatment": "Cần khám và xét nghiệm khi phù hợp trước khi chọn điều trị. Mô hình này chỉ phân nhóm dấu hiệu, không đưa chẩn đoán tác nhân hoặc phác đồ từ ảnh.",
+        "prevention": "Vệ sinh chuồng, kiểm soát côn trùng, cách ly con mới và thực hiện lịch vaccine theo hướng dẫn thú y địa phương.",
+        "urgent": "Khó thở, co giật, liệt, không đứng được hoặc nhiều con chết cần liên hệ thú y ngay; hạn chế di chuyển đàn.",
+        "monitoring": "Ghi tuổi gà, số con có dấu hiệu, thời điểm khởi phát, ăn uống, hô hấp và tiền sử vaccine. Ảnh toàn thân và ảnh phân được phân tích bằng hai nhánh riêng.",
+        "medications": "Không chọn kháng sinh, thuốc hay liều dùng chỉ dựa trên nhóm dấu hiệu từ ảnh. Thú y cần xác định nguyên nhân và thời gian ngừng thuốc nếu có."
+      },
+      "unknown": {
+        "signs": "Chưa nhận diện được một nhóm dấu hiệu bên ngoài đang hỗ trợ. Không có nghĩa là gà khỏe mạnh.",
+        "causes": "Có thể ảnh không rõ, dấu hiệu chưa được hỗ trợ, con vật khác hoặc mô hình phân loại sai.",
+        "care": "Chọn đúng loại ảnh, chụp rõ vùng bất thường khi có thể làm an toàn. Không cố mở miệng, bóc vảy hoặc dùng ảnh mổ khám. Liên hệ thú y nếu gà có triệu chứng.",
+        "urgent": "Khó thở, liệt, co giật hoặc nhiều con chết cần liên hệ thú y ngay.",
+        "medications": "Không lựa chọn thuốc hoặc liều dùng từ kết quả chưa nhận diện được."
+      }
+    },
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "model_sha256": "489c2c0fd504684016a425bf2a8a72df0ba7d9c2d78478a0b4affa6aacbada01",
+    "architecture": "efficientnet_b0",
+    "input_type": "body"
+  }
+}
